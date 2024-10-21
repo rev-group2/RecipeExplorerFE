@@ -1,35 +1,36 @@
 import React from 'react'
 import "../../styles/Recipes/CreateRecipeView.css"
+import { Recipe } from './RecipeController'
 
-type FormProps = {submitForm: (e: React.FormEvent<HTMLFormElement>, imageFile: File | undefined) => void, selectImage: (e: React.ChangeEvent<HTMLInputElement>) => void, imageFile: File | undefined, imageURL: string | undefined, formMessage: string, submitted: boolean}
+type FormProps = {submitForm: (e: React.FormEvent<HTMLFormElement>, imageFile: File | undefined) => void, selectImage: (e: React.ChangeEvent<HTMLInputElement>) => void, imageFile: File | undefined, imageURL: string | undefined, recipeData: Recipe | undefined, editRecipe: boolean, formMessage: string, submitted: boolean}
 
-function CreateRecipeView({submitForm, selectImage, imageFile, imageURL, formMessage, submitted}: FormProps) {
+function CreateRecipeView({submitForm, selectImage, imageFile, imageURL, recipeData, editRecipe, formMessage, submitted}: FormProps) {
   return (
     <div className='create-recipe-wrapper'>
-      <h2>Create A New Recipe</h2>
+      <h2>{editRecipe ? "Edit Recipe" : "Create A New Recipe"}</h2>
       <form className="create-recipe-form" onSubmit={(e: React.FormEvent<HTMLFormElement>) => submitForm(e, imageFile)}>
         <label>Recipe name
-        <input type="text" id='recipe-name' name='recipeName' required/>
+        <input type="text" id='recipe-name' name='recipeName' required defaultValue={editRecipe ? recipeData?.recipeName || '' : ''} />
         </label>
         
         <label>Category
-        <input type="text" id='recipe-category' name='category' required/>
+        <input type="text" id='recipe-category' name='category' required defaultValue={editRecipe ? recipeData?.category || '' : ''}/>
         </label>
 
         <label>Cuisine
-        <input type="text" id='recipe-cuisine' name='cuisine' required/>
+        <input type="text" id='recipe-cuisine' name='cuisine' required defaultValue={editRecipe ? recipeData?.cuisine || '' : ''}/>
         </label>
 
         <label>Description
-        <textarea id='description' name='description' required/>
+        <textarea id='description' name='description' required defaultValue={editRecipe ? recipeData?.description || '' : ''}/>
         </label>
 
         <label>Instructions
-        <textarea id='recipe-instructions' name='instructions' required/>
+        <textarea id='recipe-instructions' name='instructions' required defaultValue={editRecipe ? recipeData?.instructions || '' : ''}/>
         </label>
 
         <label>Ingredients
-        <input type='text' id='recipe-ingredients' name='ingredients' required/>
+        <input type='text' id='recipe-ingredients' name='ingredients' required defaultValue={editRecipe ? recipeData?.ingredients || '' : ''}/>
         </label>
 
         <div className="image-upload-wrapper">
@@ -43,7 +44,10 @@ function CreateRecipeView({submitForm, selectImage, imageFile, imageURL, formMes
           <p>{formMessage ? formMessage : "" }</p>
         </div>
 
-        <button type='submit'>{submitted ? "Recipe Submitted" : "Submit Recipe"}</button>
+        {editRecipe ? 
+        <button type='submit'>{submitted ? "Recipe Updated" : "Edit Recipe"}</button> :
+        <button type='submit'>{submitted ? "Recipe Submitted" : "Create Recipe"}</button>
+        }
       </form>
     </div>
   )
