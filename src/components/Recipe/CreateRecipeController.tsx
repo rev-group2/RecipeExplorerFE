@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import CreateRecipeView from './CreateRecipeView'
+import CreateRecipeView from './RecipeFormView'
 import { UserContext } from '../Context/UserContext'
 import config from '../../config';
 const PURL = `${config.path}`;
