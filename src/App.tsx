@@ -6,7 +6,7 @@ import MyProfileController from './components/MyProfile/MyProfileController';
 import NavBar from './components/NavBar/NavBar';
 import {User, UserContext} from "./components/Context/UserContext"
 import LoginController from './components/Login/LoginController';
-import CreateRecipeController from './components/CreateRecipe/CreateRecipeController';
+import CreateRecipeController from './components/Recipe/CreateRecipeController';
 import RegisterController from './components/Register/RegisterController';
 
 function App() : JSX.Element {
