@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import CreateRecipeView from './RecipeFormView'
+import RecipeFormView from './RecipeFormView'
 import { UserContext } from '../Context/UserContext'
 import config from '../../config';
 const PURL = `${config.path}`;
@@ -95,7 +95,7 @@ function CreateRecipeController() {
   }, [user?.token, navigate]);
 
   return (
-    <CreateRecipeView submitForm={handleSubmit} selectImage={handleImageSelection} imageFile={imageFile} imageURL={imageFileURL} formMessage={message} submitted={submitted}/>
+    <RecipeFormView recipeData={undefined} submitForm={handleSubmit} selectImage={handleImageSelection} imageFile={imageFile} imageURL={imageFileURL} formMessage={message} submitted={submitted}/>
   )
 }
 
