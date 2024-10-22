@@ -2,9 +2,9 @@ import React from 'react'
 import "../../styles/Recipes/CreateRecipeView.css"
 import { Recipe } from './RecipeController'
 
-type FormProps = {submitForm: (e: React.FormEvent<HTMLFormElement>) => void, selectImage: (e: React.ChangeEvent<HTMLInputElement>) => void, imageFile: File | undefined, imageURL: string | undefined, recipeData: Recipe | undefined, editRecipe: boolean, formMessage: string, submitted: boolean}
+type FormProps = {submitForm: (e: React.FormEvent<HTMLFormElement>) => void, selectImage: (e: React.ChangeEvent<HTMLInputElement>) => void, deleteRecipe: (e: React.MouseEvent<HTMLButtonElement>) => void, imageFile: File | undefined, imageURL: string | undefined, recipeData: Recipe | undefined, editRecipe: boolean, formMessage: string, submitted: boolean}
 
-function CreateRecipeView({submitForm, selectImage, imageURL, recipeData, editRecipe, formMessage, submitted}: FormProps) {
+function CreateRecipeView({submitForm, selectImage, deleteRecipe, imageURL, recipeData, editRecipe, formMessage, submitted}: FormProps) {
   return (
     <div className='create-recipe-wrapper'>
       <h2>{editRecipe ? "Edit Recipe" : "Create A New Recipe"}</h2>
@@ -45,7 +45,10 @@ function CreateRecipeView({submitForm, selectImage, imageURL, recipeData, editRe
         </div>
 
         {editRecipe ? 
-        <button type='submit'>{submitted ? "Recipe Updated" : "Edit Recipe"}</button> :
+        <>
+          <button type='submit'>{submitted ? "Recipe Updated" : "Edit Recipe"}</button>
+          <button type='button' onClick={deleteRecipe}>Delete Recipe</button> 
+        </> :
         <button type='submit'>{submitted ? "Recipe Submitted" : "Create Recipe"}</button>
         }
       </form>

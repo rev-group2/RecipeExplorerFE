@@ -120,6 +120,30 @@ function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
     }
   }
 
+  async function handleDelete(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+
+    const payload = {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${user?.token}`,
+        "Content-Type": "application/json"
+      }
+    }
+
+    try {
+      const recipeResponse = await fetch(`${PURL}/recipes/${existingRecipe?.uuid}`, payload)
+
+      if (recipeResponse.ok) {
+        setSubmitted(true);
+      }
+
+      navigate("/");
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   function resetData(formElement: HTMLFormElement) {
     formElement.reset();
     setImageFile(undefined);
@@ -156,7 +180,7 @@ function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
   }, [user?.token, navigate]);
 
   return (
-    <RecipeFormView recipeData={existingRecipe} editRecipe={isEditing} submitForm={handleSubmit} selectImage={handleImageSelection} imageFile={imageFile} imageURL={imageFileURL} formMessage={message} submitted={submitted}/>
+    <RecipeFormView recipeData={existingRecipe} editRecipe={isEditing} deleteRecipe={handleDelete} submitForm={handleSubmit} selectImage={handleImageSelection} imageFile={imageFile} imageURL={imageFileURL} formMessage={message} submitted={submitted}/>
   )
 }
 
