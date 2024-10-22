@@ -50,7 +50,6 @@ function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
       const formData = new FormData(form);
       const formJson = Object.fromEntries(formData.entries());
 
-      
       if (formJson.recipeThumb instanceof File && formJson.recipeThumb.name === "" && imageFile) {
         formJson.recipeThumb = imageFile;
       } else if (isEditing && !imageFile && existingRecipe?.recipeThumb) {
@@ -83,8 +82,11 @@ function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
       const recipeResponse = await fetch(`${PURL}/recipes`, payload);
       
       if (recipeResponse.ok) {
+        setSubmitted(true);
         resetData(formElement);
       }
+
+      setTimeout(() => setSubmitted(false), 500);
     } catch(err) {
       setMessage("Failed to create recipe, try again");
       console.error(err);
@@ -107,8 +109,11 @@ function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
       const recipeResponse = await fetch(`${PURL}/recipes`, payload);
       
       if (recipeResponse.ok) {
+        setSubmitted(true);
         resetData(formElement);
       }
+
+      setTimeout(() => setSubmitted(false), 500);
     } catch(err) {
       setMessage("Failed to edit recipe, try again");
       console.error(err);
@@ -116,13 +121,10 @@ function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
   }
 
   function resetData(formElement: HTMLFormElement) {
-    setSubmitted(true);
     formElement.reset();
     setImageFile(undefined);
     setImageFileURL(undefined);
     setMessage("");
-
-    setTimeout(() => setSubmitted(false), 500);
   }
 
   useEffect(() => {
