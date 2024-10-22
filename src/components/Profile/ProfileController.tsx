@@ -40,12 +40,9 @@ export default function ProfileController(props: any): JSX.Element {
 
 
     async function updateProfile(editedUser:ProfileViewType):Promise<boolean>{
-        console.log(editedUser)
-        console.log("BUTTON PUSH YAY");
         try{
             const header: AxiosRequestConfig = { headers: { Authorization: `Bearer ${user?.token}` } };
             const response: AxiosResponse = await axios.post(`${URL}/users/profile`, editedUser, header);
-            console.log(response);
             if(response.status >= 200 && response.status < 300){
                 setProfile(editedUser);
                 if(setUser){
