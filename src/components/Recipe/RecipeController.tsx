@@ -56,7 +56,6 @@ function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
       } else if (isEditing && !imageFile && existingRecipe?.recipeThumb) {
         formJson.recipeThumb = existingRecipe.recipeThumb;
       }
-      console.log(formJson)
       
       if (Object.values(formJson).includes("")) {
         setMessage("All fields are required");
