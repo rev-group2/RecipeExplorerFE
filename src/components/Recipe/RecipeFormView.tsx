@@ -2,13 +2,13 @@ import React from 'react'
 import "../../styles/Recipes/CreateRecipeView.css"
 import { Recipe } from './RecipeController'
 
-type FormProps = {submitForm: (e: React.FormEvent<HTMLFormElement>, imageFile: File | undefined) => void, selectImage: (e: React.ChangeEvent<HTMLInputElement>) => void, imageFile: File | undefined, imageURL: string | undefined, recipeData: Recipe | undefined, editRecipe: boolean, formMessage: string, submitted: boolean}
+type FormProps = {submitForm: (e: React.FormEvent<HTMLFormElement>) => void, selectImage: (e: React.ChangeEvent<HTMLInputElement>) => void, imageFile: File | undefined, imageURL: string | undefined, recipeData: Recipe | undefined, editRecipe: boolean, formMessage: string, submitted: boolean}
 
-function CreateRecipeView({submitForm, selectImage, imageFile, imageURL, recipeData, editRecipe, formMessage, submitted}: FormProps) {
+function CreateRecipeView({submitForm, selectImage, imageURL, recipeData, editRecipe, formMessage, submitted}: FormProps) {
   return (
     <div className='create-recipe-wrapper'>
       <h2>{editRecipe ? "Edit Recipe" : "Create A New Recipe"}</h2>
-      <form className="create-recipe-form" onSubmit={(e: React.FormEvent<HTMLFormElement>) => submitForm(e, imageFile)}>
+      <form className="create-recipe-form" onSubmit={(e: React.FormEvent<HTMLFormElement>) => submitForm(e)}>
         <label>Recipe name
         <input type="text" id='recipe-name' name='recipeName' required defaultValue={editRecipe ? recipeData?.recipeName || '' : ''} />
         </label>

@@ -42,7 +42,7 @@ function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
     }
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>, imageFileObj: File | undefined) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     try {
@@ -50,18 +50,20 @@ function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
       const formData = new FormData(form);
       const formJson = Object.fromEntries(formData.entries());
 
-      if (formJson.recipeThumb instanceof File && formJson.recipeThumb.name === "" && imageFileObj) {
-        formJson.recipeThumb = imageFileObj;
-      } else if (isEditing && !imageFileObj && existingRecipe?.recipeThumb) {
+      
+      if (formJson.recipeThumb instanceof File && formJson.recipeThumb.name === "" && imageFile) {
+        formJson.recipeThumb = imageFile;
+      } else if (isEditing && !imageFile && existingRecipe?.recipeThumb) {
         formJson.recipeThumb = existingRecipe.recipeThumb;
       }
-
+      console.log(formJson)
+      
       if (Object.values(formJson).includes("")) {
         setMessage("All fields are required");
       } else if (formJson.recipeThumb instanceof File && formJson.recipeThumb.name === "" && !isEditing) {
         setMessage("You must upload an image");
       } else {
-        isEditing ? editRecipe(formJson, form) : createRecipe(formJson, form);
+        isEditing && recipeUuid ? editRecipe(formJson, form) : createRecipe(formJson, form);
       }
     } catch(err) {
       console.error(err);
