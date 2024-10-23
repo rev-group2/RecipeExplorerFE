@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import NavBarSearchView from './NavBarSearchView';
+import { Recipe } from '../Home/HomeController'
 
 const config = require("../../config");
 const URL = `${config.path}`;
@@ -10,8 +11,6 @@ function NavBarSearchController() {
     const [searchQuery, setSearchQuery] = useState<string>('');
 
     async function search(data: { searchQuery: string, searchValue: string }) {
-        console.log(data);
-        const sanitizedData = sanitizeInputForMealDB(data);
         try {
             // OUR API
             const response = await fetch(`${URL}/recipes/?${data.searchQuery}=${data.searchValue}`);
@@ -24,7 +23,8 @@ function NavBarSearchController() {
             //console.log(json);
 
             // MEALDB API
-            console.log(sanitizedData);
+            const sanitizedData = sanitizeInputForMealDB(data); // console.log(sanitizedData) -> {searchQuery: 'a', searchValue: 'Canadian'}
+            
             const mealDBResponse = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?${sanitizedData.searchQuery}=${sanitizedData.searchValue}`);
             
             if(!mealDBResponse.ok) {
@@ -32,9 +32,10 @@ function NavBarSearchController() {
             }
 
             const mealDBJson = await mealDBResponse.json(); // console.log(mealDBJson) -> meals: Meal[]
-            
 
-            //navigate('/search-results', { state: { searchResultData: json } });
+            const searchResultData = [...json, ...mealDBJson.meals];
+
+            navigate('/search-results', { state: { searchResultData: searchResultData } });
         } catch (error) {
             console.error(error);
         }

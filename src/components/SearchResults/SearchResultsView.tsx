@@ -6,11 +6,12 @@ function SearchResultsView(props: any) {
     const { state } = useLocation();
     console.log(state.searchResultData);
 
-    function createSearchResultsList(data: Recipe[]) {
-        const listItems = data.map((item: Recipe, index: number) => {
+    function createSearchResultsList(data: any[]) {
+        const listItems = data.map((item: any, index: number) => {
             return (
-                <li key={index} className="list-group-item">
-                    {item.recipeName}
+                <li key={index}>
+                    {/* {item.strMeal} */}
+                    
                 </li>
             )
         });
