@@ -2,7 +2,7 @@ import React from 'react'
 import "../../styles/Recipes/CreateRecipeView.css"
 import { Recipe } from './RecipeController'
 
-type FormProps = {submitForm: (e: React.FormEvent<HTMLFormElement>) => void, selectImage: (e: React.ChangeEvent<HTMLInputElement>) => void, deleteRecipe: (e: React.MouseEvent<HTMLButtonElement>) => void, imageFile: File | undefined, imageURL: string | undefined, recipeData: Recipe | undefined, editRecipe: boolean, formMessage: string, submitted: boolean}
+type FormProps = {submitForm: (e: React.FormEvent<HTMLFormElement>) => void, selectImage: (e: React.ChangeEvent<HTMLInputElement>) => void, deleteRecipe: (e: React.MouseEvent<HTMLButtonElement>) => void, imageURL: string | undefined, recipeData: Recipe | undefined, editRecipe: boolean, formMessage: string, submitted: boolean}
 
 function CreateRecipeView({submitForm, selectImage, deleteRecipe, imageURL, recipeData, editRecipe, formMessage, submitted}: FormProps) {
   return (
