@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RecipeFormView from './RecipeFormView';
 import { UserContext } from '../Context/UserContext';
+import uploadImage from '../../helpers/uploadImage';
 import config from '../../config';
 const PURL = `${config.path}`;
 
@@ -42,7 +43,7 @@ function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
     }
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     try {
@@ -50,46 +51,36 @@ function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
       const formData = new FormData(form);
       const formJson = Object.fromEntries(formData.entries());
 
-      if (formJson.recipeThumb instanceof File && formJson.recipeThumb.name === "" && imageFile) {
-        formJson.recipeThumb = imageFile;
+      if (imageFile && user?.token) {
+        try {
+          const uploadUrl = await uploadImage(imageFile, user?.token);
+          if (uploadUrl) {
+            formJson.recipeThumb = uploadUrl;
+          }
+        } catch(err) {
+          console.error(err);
+          setMessage("Failed to upload image, check file size (max 3mb)")
+          return;
+        }
       } else if (isEditing && !imageFile && existingRecipe?.recipeThumb) {
         formJson.recipeThumb = existingRecipe.recipeThumb;
-      }
-
-      if (imageFile) {
-        processImage();
       }
       
       if (Object.values(formJson).includes("")) {
         setMessage("All fields are required");
-      } else if (formJson.recipeThumb instanceof File && formJson.recipeThumb.name === "" && !isEditing) {
-        setMessage("You must upload an image");
-      } else {
-        // isEditing && recipeUuid ? editRecipe(formJson, form) : createRecipe(formJson, form);
+        return;
       }
+      
+      if (!imageFile && !isEditing) {
+        setMessage("You must upload an image");
+        return;
+      }
+      
+      isEditing && recipeUuid ? await editRecipe(formJson, form) : await createRecipe(formJson, form);
     } catch(err) {
       console.error(err);
+      setMessage("Submission failed, try again")
     }
-  }
-
-  async function processImage() {
-    const formData = new FormData();
-
-    if (imageFile) {
-      formData.append('file', imageFile);
-    }
-
-    const response = await fetch(`${PURL}/images`, {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${user?.token}`
-      },
-      body: formData
-    });
-
-    const data = await response.text();
-
-    return data;
   }
 
   async function createRecipe(recipe: Object, formElement: HTMLFormElement) {
@@ -171,8 +162,10 @@ function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
   function resetData(formElement: HTMLFormElement) {
     formElement.reset();
     setImageFile(undefined);
-    setImageFileURL(undefined);
     setMessage("");
+    if (!isEditing) {
+      setImageFileURL(undefined);
+    }
   }
 
   useEffect(() => {
@@ -204,7 +197,7 @@ function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
   }, [user?.token, navigate]);
 
   return (
-    <RecipeFormView recipeData={existingRecipe} editRecipe={isEditing} deleteRecipe={handleDelete} submitForm={handleSubmit} selectImage={handleImageSelection} imageFile={imageFile} imageURL={imageFileURL} formMessage={message} submitted={submitted}/>
+    <RecipeFormView recipeData={existingRecipe} editRecipe={isEditing} deleteRecipe={handleDelete} submitForm={handleSubmit} selectImage={handleImageSelection} imageURL={imageFileURL} formMessage={message} submitted={submitted}/>
   )
 }
 
