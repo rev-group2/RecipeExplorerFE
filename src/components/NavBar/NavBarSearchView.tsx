@@ -23,7 +23,7 @@ function NavBarSearch(props: any) {
                     <option value="initial">Search Type</option>
                     <option value="category">Category</option>
                     <option value="cuisine">Cuisine</option>
-                    <option value="ingredient">Ingredient</option>
+                    <option value="ingredients">Ingredients</option>
                 </select>
                 <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchValue" />
                 <button className="btn btn-outline-success" type="submit">Search</button>

@@ -8,6 +8,7 @@ import {User, UserContext} from "./components/Context/UserContext"
 import LoginController from './components/Login/LoginController';
 import CreateRecipeController from './components/CreateRecipe/CreateRecipeController';
 import RegisterController from './components/Register/RegisterController';
+import SearchResultsController from './components/SearchResults/SearchResultsController';
 
 function App() : JSX.Element {
   const [user, setUser] = useState<User>({} as any)
@@ -22,6 +23,7 @@ function App() : JSX.Element {
         <Route path="/register" element={<RegisterController/>}/>
         <Route path="/login" element={<LoginController setUser={setUser} />} />
         <Route path='/create-recipe' element={<CreateRecipeController />}/>
+        <Route path='/search-results' element={<SearchResultsController/>}/>
       </Routes>
       </UserContext.Provider>
     </div>
