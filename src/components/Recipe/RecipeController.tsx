@@ -1,7 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import RecipeFormView from './RecipeFormView'
-import { UserContext } from '../Context/UserContext'
+import RecipeFormView from './RecipeFormView';
+import { UserContext } from '../Context/UserContext';
 import config from '../../config';
 const PURL = `${config.path}`;
 
@@ -55,17 +55,41 @@ function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
       } else if (isEditing && !imageFile && existingRecipe?.recipeThumb) {
         formJson.recipeThumb = existingRecipe.recipeThumb;
       }
+
+      if (imageFile) {
+        processImage();
+      }
       
       if (Object.values(formJson).includes("")) {
         setMessage("All fields are required");
       } else if (formJson.recipeThumb instanceof File && formJson.recipeThumb.name === "" && !isEditing) {
         setMessage("You must upload an image");
       } else {
-        isEditing && recipeUuid ? editRecipe(formJson, form) : createRecipe(formJson, form);
+        // isEditing && recipeUuid ? editRecipe(formJson, form) : createRecipe(formJson, form);
       }
     } catch(err) {
       console.error(err);
     }
+  }
+
+  async function processImage() {
+    const formData = new FormData();
+
+    if (imageFile) {
+      formData.append('file', imageFile);
+    }
+
+    const response = await fetch(`${PURL}/images`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${user?.token}`
+      },
+      body: formData
+    });
+
+    const data = await response.text();
+
+    return data;
   }
 
   async function createRecipe(recipe: Object, formElement: HTMLFormElement) {
