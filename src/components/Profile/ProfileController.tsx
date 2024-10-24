@@ -1,21 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react';
-import ProfileView, { ProfileViewType } from './ProfileView';
+import ProfileView from './ProfileView';
 import { Params, useParams } from 'react-router-dom';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import path from 'path';
 import { User, UserContext } from '../Context/UserContext';
+import ActivityController from './ActivityController';
+import { ProfileType } from '../Types/profileType';
 
 const config = require("../../config");
 const URL = `${config.path}`;
-
-
 
 export default function ProfileController(props: any): JSX.Element {
 
     const setUser: Function | undefined = props.setUser;
     const user:User | undefined= useContext(UserContext);
     const { id }:Params<string> = useParams()
-    const [profile, setProfile] = useState<ProfileViewType>();
+    const [profile, setProfile] = useState<ProfileType>();
 
     const isUserProfile = user && profile && user.uuid === profile.uuid;
 
@@ -39,7 +39,7 @@ export default function ProfileController(props: any): JSX.Element {
     }, [id])
 
 
-    async function updateProfile(editedUser:ProfileViewType):Promise<boolean>{
+    async function updateProfile(editedUser:ProfileType):Promise<boolean>{
         try{
             const header: AxiosRequestConfig = { headers: { Authorization: `Bearer ${user?.token}` } };
             const response: AxiosResponse = await axios.post(`${URL}/users/profile`, editedUser, header);
@@ -59,6 +59,10 @@ export default function ProfileController(props: any): JSX.Element {
     }
 
     return (
-        <ProfileView profile={profile} token={user?.token} isUserProfile={isUserProfile} updateProfile={updateProfile}/>
+        <>
+            <ProfileView profile={profile} token={user?.token} isUserProfile={isUserProfile} updateProfile={updateProfile} />
+            <ActivityController profile={profile} isUserProfile={isUserProfile}/>
+        </>
+        
     )
 }
