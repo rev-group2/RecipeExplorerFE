@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import "../../styles/Home/HomeView.css";
-import { Recipe, RecipeComment } from './HomeController'
+import { RecipeComment } from './HomeController';
+import { Recipe } from '../Types/recipeType';
 import CommentsView from './CommentsView'
 
 type HomeProps = {recipeIndex: number, rating: string, recipesArr: Recipe[] | undefined, skipRecipe: () => void, comments: RecipeComment[] | undefined}
