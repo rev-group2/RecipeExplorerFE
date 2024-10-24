@@ -20,7 +20,7 @@ function NavBarSearchController() {
             }
 
             const json = await response.json(); // returns an array
-            console.log(json);
+            // console.log(json);
 
             // MEALDB API
             const sanitizedData = sanitizeInputForMealDB(data); // console.log(sanitizedData) -> {searchQuery: 'a', searchValue: 'Canadian'}
