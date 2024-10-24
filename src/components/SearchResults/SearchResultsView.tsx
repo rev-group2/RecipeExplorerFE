@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
-import { Recipe } from '../Types/recipeType';
+import { RecipeType } from '../Types/recipeType';
 import { Meal } from '../Types/mealType';
 import '../../styles/SearchResults/SearchResultsView.css';
 
