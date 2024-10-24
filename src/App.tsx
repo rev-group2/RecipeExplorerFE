@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import HomeController from './components/Home/HomeController';
-import MyProfileController from './components/MyProfile/MyProfileController';
 import NavBar from './components/NavBar/NavBar';
 import {User, UserContext} from "./components/Context/UserContext"
 import LoginController from './components/Login/LoginController';
+import ProfileController from './components/Profile/ProfileController';
 import RecipeController from './components/Recipe/RecipeController';
 import RegisterController from './components/Register/RegisterController';
 
@@ -17,10 +17,10 @@ function App() : JSX.Element {
       <UserContext.Provider value={user}>
       <NavBar setUser={setUser}/>
       <Routes>
-        <Route path="/MyProfile" element={<MyProfileController/>}/>
         <Route path="/" element={<HomeController />}/>
         <Route path="/register" element={<RegisterController/>}/>
         <Route path="/login" element={<LoginController setUser={setUser} />} />
+        <Route path='/profile/:id' element={<ProfileController setUser={setUser} />} />
         <Route path='/create-recipe' element={<RecipeController recipeUuid={undefined} isEditing={false} />}/>
       </Routes>
       </UserContext.Provider>
