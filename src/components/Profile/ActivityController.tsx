@@ -39,10 +39,6 @@ export default function ActivityController(props: any): JSX.Element {
         getActivity(profile)
     }, [profile])
 
-    /*
-    useEffect(() => {
-        console.log("THIS IS THE ACTIVITY CONTROLLER")
-    },[])*/
 
     return (
         <ActivityView activity={activity} isUserProfile={isUserProfile}/>
