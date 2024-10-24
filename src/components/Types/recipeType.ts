@@ -1,9 +1,9 @@
 export type RecipeType = {
-    authorUuid: string
+    authorUuid?: string
     category: string
-    creationDate: number
+    creationDate?: number
     cuisine: string
-    description: string | null
+    description?: string
     ingredients: Array<string>
     instructions: string
     recipeName: string
