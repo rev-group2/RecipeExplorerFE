@@ -6,7 +6,7 @@ import MyProfileController from './components/MyProfile/MyProfileController';
 import NavBar from './components/NavBar/NavBar';
 import {User, UserContext} from "./components/Context/UserContext"
 import LoginController from './components/Login/LoginController';
-import CreateRecipeController from './components/CreateRecipe/CreateRecipeController';
+import RecipeController from './components/Recipe/RecipeController';
 import RegisterController from './components/Register/RegisterController';
 import SearchResultsController from './components/SearchResults/SearchResultsController';
 
@@ -22,7 +22,7 @@ function App() : JSX.Element {
         <Route path="/" element={<HomeController />}/>
         <Route path="/register" element={<RegisterController/>}/>
         <Route path="/login" element={<LoginController setUser={setUser} />} />
-        <Route path='/create-recipe' element={<CreateRecipeController />}/>
+        <Route path='/create-recipe' element={<RecipeController recipeUuid={undefined} isEditing={false} />}/>
         <Route path='/search-results' element={<SearchResultsController/>}/>
       </Routes>
       </UserContext.Provider>
