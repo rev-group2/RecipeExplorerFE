@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import HomeView from './HomeView';
 import config from '../../config';
-import { Recipe } from '../Types/recipeType';
+import { RecipeType } from '../Types/recipeType';
 import { Meal } from '../Types/mealType';
 import { CommentType } from '../Types/commentType';
 const URL = `${config.path}`;
 
 function HomeController() {
-  const [recipes, setRecipes] = useState<Recipe[] | undefined>(undefined);
+  const [recipes, setRecipes] = useState<RecipeType[] | undefined>(undefined);
   const [randIndex, setRandIndex] = useState<number>(0);
   const [recipeComments, setRecipeComments] = useState<CommentType[] | undefined>(undefined);
   const [recipeRating, setRecipeRating] = useState<string>("No rating");
   
-  async function getRandRecipe(recipesArr: Recipe[] | undefined) {
+  async function getRandRecipe(recipesArr: RecipeType[] | undefined) {
     try {
       const responseRand = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
       const dataRand = await responseRand.json();
@@ -60,7 +60,7 @@ function HomeController() {
     }
   }
   
-  function combineRecipes(randRecipe: Recipe[], recipesArr: Recipe[] | undefined) {
+  function combineRecipes(randRecipe: RecipeType[], recipesArr: RecipeType[] | undefined) {
     if (recipesArr) {
       const combinedRecipes = [...recipesArr, ...randRecipe];
       
@@ -71,7 +71,7 @@ function HomeController() {
     }
   }
   
-  async function randomIndex(recipesArr: Recipe[]) {
+  async function randomIndex(recipesArr: RecipeType[]) {
     try {
       const randRecipeIndex = Math.floor(Math.random() * recipesArr.length);
       setRandIndex(randRecipeIndex);
@@ -82,8 +82,9 @@ function HomeController() {
     }
   }
   
-  function transformMealData(randRecipe: Meal): Recipe[] {
+  function transformMealData(randRecipe: Meal): RecipeType[] {
     return randRecipe.meals.map((recipe) => ({
+      type: "recipe",
       uuid: recipe.idMeal,
       recipeName: recipe.strMeal,
       cuisine: recipe.strArea,
