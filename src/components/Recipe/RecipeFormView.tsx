@@ -10,27 +10,27 @@ function CreateRecipeView({submitForm, selectImage, deleteRecipe, imageURL, reci
       <h2>{editRecipe ? "Edit Recipe" : "Create A New Recipe"}</h2>
       <form className="create-recipe-form" onSubmit={(e: React.FormEvent<HTMLFormElement>) => submitForm(e)}>
         <label>Recipe name
-        <input type="text" id='recipe-name' name='recipeName' required defaultValue={editRecipe ? recipeData?.recipeName || '' : ''} />
+        <input type="text" id='recipe-name' name='recipeName' required defaultValue={editRecipe ? recipeData?.recipeName : ''} />
         </label>
         
         <label>Category
-        <input type="text" id='recipe-category' name='category' required defaultValue={editRecipe ? recipeData?.category || '' : ''}/>
+        <input type="text" id='recipe-category' name='category' required defaultValue={editRecipe ? recipeData?.category : ''}/>
         </label>
 
         <label>Cuisine
-        <input type="text" id='recipe-cuisine' name='cuisine' required defaultValue={editRecipe ? recipeData?.cuisine || '' : ''}/>
+        <input type="text" id='recipe-cuisine' name='cuisine' required defaultValue={editRecipe ? recipeData?.cuisine : ''}/>
         </label>
 
         <label>Description
-        <textarea id='description' name='description' required defaultValue={editRecipe ? recipeData?.description || '' : ''}/>
+        <textarea id='description' name='description' required defaultValue={editRecipe ? recipeData?.description : ''}/>
         </label>
 
         <label>Instructions
-        <textarea id='recipe-instructions' name='instructions' required defaultValue={editRecipe ? recipeData?.instructions || '' : ''}/>
+        <textarea id='recipe-instructions' name='instructions' required defaultValue={editRecipe ? recipeData?.instructions : ''}/>
         </label>
 
         <label>Ingredients
-        <input type='text' id='recipe-ingredients' name='ingredients' required defaultValue={editRecipe ? recipeData?.ingredients || '' : ''}/>
+        <input type='text' id='recipe-ingredients' name='ingredients' required defaultValue={editRecipe ? recipeData?.ingredients : ''}/>
         </label>
 
         <div className="image-upload-wrapper">
@@ -46,7 +46,7 @@ function CreateRecipeView({submitForm, selectImage, deleteRecipe, imageURL, reci
 
         {editRecipe ? 
         <>
-          <button type='submit'>{submitted ? "Recipe Updated" : "Edit Recipe"}</button>
+          <button type='submit'>{submitted ? "Recipe Updated" : "Save Edits"}</button>
           <button type='button' onClick={deleteRecipe}>Delete Recipe</button> 
         </> :
         <button type='submit'>{submitted ? "Recipe Submitted" : "Create Recipe"}</button>
