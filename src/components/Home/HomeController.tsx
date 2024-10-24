@@ -1,90 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import HomeView from './HomeView';
 import config from '../../config';
+import { RecipeType } from '../Types/recipeType';
+import { Meal } from '../Types/mealType';
+import { CommentType } from '../Types/commentType';
 const URL = `${config.path}`;
 
-interface Meal {
-  meals: [ 
-    {
-      idMeal: string;
-      strMeal: string;
-      strCategory: string;
-      strArea: string;
-      strInstructions: string;
-      strMealThumb: string;
-      strTags: string | null;
-      strIngredient1: string | null;
-      strIngredient2: string | null;
-      strIngredient3: string | null;
-      strIngredient4: string | null;
-      strIngredient5: string | null;
-      strIngredient6: string | null;
-      strIngredient7: string | null;
-      strIngredient8: string | null;
-      strIngredient9: string | null;
-      strIngredient10: string | null;
-      strIngredient11: string | null;
-      strIngredient12: string | null;
-      strIngredient13: string | null;
-      strIngredient14: string | null;
-      strIngredient15: string | null;
-      strIngredient16: string | null;
-      strIngredient17: string | null;
-      strIngredient18: string | null;
-      strIngredient19: string | null;
-      strIngredient20: string | null;
-      strMeasure1: string | null;
-      strMeasure2: string | null;
-      strMeasure3: string | null;
-      strMeasure4: string | null;
-      strMeasure5: string | null;
-      strMeasure6: string | null;
-      strMeasure7: string | null;
-      strMeasure8: string | null;
-      strMeasure9: string | null;
-      strMeasure10: string | null;
-      strMeasure11: string | null;
-      strMeasure12: string | null;
-      strMeasure13: string | null;
-      strMeasure14: string | null;
-      strMeasure15: string | null;
-      strMeasure16: string | null;
-      strMeasure17: string | null;
-      strMeasure18: string | null;
-      strMeasure19: string | null;
-      strMeasure20: string | null;
-    }
-  ]
-}
-
-export interface Recipe {
-  uuid: string;
-  recipeName: string;
-  cuisine: string;
-  category: string;
-  instructions: string;
-  recipeThumb: string;
-  ingredients: string[];
-  description?: string;
-}
-
-export interface RecipeComment {
-  authorUuid: string;
-  creationDate: number;
-  description: string;
-  rating: number;
-  recipeUuid: string;
-  type: string;
-  uuid: string;
-}
-
 function HomeController() {
-  const [recipes, setRecipes] = useState<Recipe[] | undefined>(undefined);
+  const [recipes, setRecipes] = useState<RecipeType[] | undefined>(undefined);
   const [randIndex, setRandIndex] = useState<number>(0);
-  const [recipeComments, setRecipeComments] = useState<RecipeComment[] | undefined>(undefined);
+  const [recipeComments, setRecipeComments] = useState<CommentType[] | undefined>(undefined);
   const [recipeRating, setRecipeRating] = useState<string>("No rating");
   
-  async function getRandRecipe(recipesArr: Recipe[] | undefined) {
+  async function getRandRecipe(recipesArr: RecipeType[] | undefined) {
     try {
       const responseRand = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
       const dataRand = await responseRand.json();
@@ -108,7 +36,7 @@ function HomeController() {
     }
   }
 
-  function calculateRecipeRating(comments: RecipeComment[]) {
+  function calculateRecipeRating(comments: CommentType[]) {
     const recipeRatings = comments.map(rating => {
       return rating.rating;
     })
@@ -132,7 +60,7 @@ function HomeController() {
     }
   }
   
-  function combineRecipes(randRecipe: Recipe[], recipesArr: Recipe[] | undefined) {
+  function combineRecipes(randRecipe: RecipeType[], recipesArr: RecipeType[] | undefined) {
     if (recipesArr) {
       const combinedRecipes = [...recipesArr, ...randRecipe];
       
@@ -143,7 +71,7 @@ function HomeController() {
     }
   }
   
-  async function randomIndex(recipesArr: Recipe[]) {
+  async function randomIndex(recipesArr: RecipeType[]) {
     try {
       const randRecipeIndex = Math.floor(Math.random() * recipesArr.length);
       setRandIndex(randRecipeIndex);
@@ -154,7 +82,7 @@ function HomeController() {
     }
   }
   
-  function transformMealData(randRecipe: Meal): Recipe[] {
+  function transformMealData(randRecipe: Meal): RecipeType[] {
     return randRecipe.meals.map((recipe) => ({
       uuid: recipe.idMeal,
       recipeName: recipe.strMeal,
