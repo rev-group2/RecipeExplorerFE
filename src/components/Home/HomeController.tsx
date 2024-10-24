@@ -84,6 +84,7 @@ function HomeController() {
   
   function transformMealData(randRecipe: Meal): RecipeType[] {
     return randRecipe.meals.map((recipe) => ({
+      type: "recipe",
       uuid: recipe.idMeal,
       recipeName: recipe.strMeal,
       cuisine: recipe.strArea,

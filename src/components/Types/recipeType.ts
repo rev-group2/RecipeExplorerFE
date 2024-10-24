@@ -1,10 +1,13 @@
-export interface RecipeType {
-    uuid: string;
-    recipeName: string;
-    cuisine: string;
-    category: string;
-    instructions: string;
-    recipeThumb: string;
-    ingredients: string[];
-    description?: string;
-  }
+export type RecipeType = {
+    authorUuid?: string
+    category: string
+    creationDate?: number
+    cuisine: string
+    description?: string
+    ingredients: Array<string>
+    instructions: string
+    recipeName: string
+    recipeThumb: string
+    type: string
+    uuid: string
+}
