@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import NavBarSearchView from './NavBarSearchView';
-import { Recipe } from '../Home/HomeController'
+import { Recipe } from '../Types/recipeType';
 
 const config = require("../../config");
 const URL = `${config.path}`;
