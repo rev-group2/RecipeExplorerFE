@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import "../../styles/Home/HomeView.css";
-import { Recipe } from '../Types/recipeType';
+import { RecipeType } from '../Types/recipeType';
 import CommentsView from './CommentsView'
 import { CommentType } from '../Types/commentType';
 
-type HomeProps = {recipeIndex: number, rating: string, recipesArr: Recipe[] | undefined, skipRecipe: () => void, comments: CommentType[] | undefined}
+type HomeProps = { recipeIndex: number, rating: string, recipesArr: RecipeType[] | undefined, skipRecipe: () => void, comments: CommentType[] | undefined}
 
 function HomeView({recipeIndex, rating, comments, recipesArr, skipRecipe}: HomeProps) {
   const [visible, setVisibile] = useState<boolean>(false);
