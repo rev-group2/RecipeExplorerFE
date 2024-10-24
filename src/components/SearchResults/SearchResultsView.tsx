@@ -25,7 +25,7 @@ function SearchResultsView(props: any) {
                 //             </div>
                 //     </div>
                 // </li>
-                <div className="card m-1" style={{width: "24rem"}} onClick={props.onClick} key={index}>
+                <div className="card m-1" style={{width: "24rem"}} onClick={() => {props.onClick(item.idMeal || item.uuid)}} key={index}>
                         <img src={item.strMealThumb || item.recipeThumb} className="card-img-top" alt="..."/>
                             <div className="card-body">
                                 <h5 className="card-title">{item.strMeal || item.recipeName}</h5>
@@ -40,7 +40,7 @@ function SearchResultsView(props: any) {
     return (
         <>
             <h2>Search Results</h2>
-            {state.searchResultData.length > 0 ? createSearchResultsList(state.searchResultData) : <p>Hello</p>}
+            {state.searchResultData.length > 0 ? createSearchResultsList(state.searchResultData) : showNoResultsFound()}
         </>
     )
 }

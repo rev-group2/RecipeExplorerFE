@@ -6,11 +6,10 @@ function SearchResultsController() {
     const navigate = useNavigate();
 
     // on clicking a recipe, it should send you to that recipe's page
-    function onClick() {
+    const onClick = (id: string) => {
         console.log('I have been clicked! from SearchResultsView.tsx');
 
-        // TO BE IMPLEMENTED
-        //navigate('/recipe-id');
+        navigate(`/recipes/${id}`);
     }
 
     return (
