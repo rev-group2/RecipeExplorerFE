@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
-import { Recipe } from '../Home/HomeController'
+import { Recipe } from '../Types/recipeType';
 
 function SearchResultsView(props: any) {
     const { state } = useLocation();
