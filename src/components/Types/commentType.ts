@@ -1,4 +1,4 @@
-export type Comment = {
+export type CommentType = {
     authorUuid: string
     creationDate: number
     description: string

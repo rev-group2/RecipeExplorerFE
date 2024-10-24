@@ -1,8 +1,8 @@
 import React from 'react'
 import "../../styles/Home/CommentsView.css";
-import {RecipeComment } from './HomeController'
+import { CommentType } from '../Types/commentType';
 
-type CommentsProps = {comments: RecipeComment[] | undefined, isVisible: boolean}
+type CommentsProps = {comments: CommentType[] | undefined, isVisible: boolean}
 
 function CommentsView({comments, isVisible}: CommentsProps) {
   return (

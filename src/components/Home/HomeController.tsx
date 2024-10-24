@@ -3,23 +3,13 @@ import HomeView from './HomeView';
 import config from '../../config';
 import { Recipe } from '../Types/recipeType';
 import { Meal } from '../Types/mealType';
-import { Comment } from '../Types/commentType';
+import { CommentType } from '../Types/commentType';
 const URL = `${config.path}`;
-
-export interface RecipeComment {
-  authorUuid: string;
-  creationDate: number;
-  description: string;
-  rating: number;
-  recipeUuid: string;
-  type: string;
-  uuid: string;
-}
 
 function HomeController() {
   const [recipes, setRecipes] = useState<Recipe[] | undefined>(undefined);
   const [randIndex, setRandIndex] = useState<number>(0);
-  const [recipeComments, setRecipeComments] = useState<Comment[] | undefined>(undefined);
+  const [recipeComments, setRecipeComments] = useState<CommentType[] | undefined>(undefined);
   const [recipeRating, setRecipeRating] = useState<string>("No rating");
   
   async function getRandRecipe(recipesArr: Recipe[] | undefined) {
@@ -46,7 +36,7 @@ function HomeController() {
     }
   }
 
-  function calculateRecipeRating(comments: Comment[]) {
+  function calculateRecipeRating(comments: CommentType[]) {
     const recipeRatings = comments.map(rating => {
       return rating.rating;
     })
