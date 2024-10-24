@@ -1,4 +1,4 @@
-export interface Recipe {
+export interface RecipeType {
     uuid: string;
     recipeName: string;
     cuisine: string;
