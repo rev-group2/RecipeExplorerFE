@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { ProfileType } from '../Types/profileType';
+import "../../styles/Profile/ProfileView.css";
+import noProfilePhoto from "../../noProfilePhoto.jpg";
 
 export default function ProfileView(props:any): JSX.Element {
 
@@ -16,6 +18,10 @@ export default function ProfileView(props:any): JSX.Element {
         setEditing(!editing);
     }
 
+    function changePhoto(){
+
+    }
+
     async function changeProfile(event: any){
         if(await props.updateProfile(editedProfile)){
             setEditing(!editing);
@@ -28,23 +34,43 @@ export default function ProfileView(props:any): JSX.Element {
     }
 
     if(profile && editing){
-        return <div>
-            <h1><input type="text" defaultValue={`${profile.username}`} placeholder='username' id="usernameChange" onChange={(e: any) => editedProfile && setEditedProfile({ ...editedProfile, username: e.target.value })}/></h1>
-            <button className="btn btn-primary mx-3" onClick={changeEditing}>Finish Editing</button>
-            <img id="picture" src={(profile.picture || "No Picture Located")} alt={"profile"}/>
-            <h3><input type="text" defaultValue={`${profile.email}`} placeholder='email' id="emailChange" onChange={(e: any) => editedProfile && setEditedProfile({ ...editedProfile, email: e.target.value })}/></h3>
-            <p><input type="text" defaultValue={`${profile.description || "Edit your description here"}`} placeholder='description' id="descriptionChange" onChange={(e: any) => editedProfile && setEditedProfile({ ...editedProfile, description: e.target.value })} /></p>
-            <button className="btn btn-primary mx-3" onClick={changeProfile}>SAVE</button>
+        return <div id='profileDocument'>
+            <table id='profileLayoutTable1'>
+                <tr>
+                    <td><img id="profilePhotoEdit" src={(profile.picture || noProfilePhoto)} alt={"profile"} /></td>
+                    <td><button id='upload Image' onClick={changePhoto}>Upload</button></td>
+                    <td><h1><input type="text" defaultValue={`${profile.username}`} placeholder='username' id="usernameChange" onChange={(e: any) => editedProfile && setEditedProfile({ ...editedProfile, username: e.target.value })} /></h1></td>
+                    <td id='profileTableSpacer2'></td>
+                    <td><button id='profileEditButton' onClick={changeEditing}>Finish</button></td>
+                </tr>
+            </table> 
+            <table>
+                <tr>
+                    <td><input id='profileEmail' type="text" defaultValue={`${profile.email}`} placeholder='email' onChange={(e: any) => editedProfile && setEditedProfile({ ...editedProfile, email: e.target.value })}/></td>
+                    <td id='profileTableSpacer1'></td>
+                    <td><button onClick={changeProfile}>SAVE</button></td>
+                </tr>
+            </table>
+            <input id='profileDescription' type="text" defaultValue={`${profile.description || ""}`} placeholder='description' onChange={(e: any) => editedProfile && setEditedProfile({ ...editedProfile, description: e.target.value })} />
             </div >
     }
-    else if(profile){
-        return <div>
-            <h1>{profile.username}</h1>
-            {isUserProfile && <button className="btn btn-primary mx-3" onClick={changeEditing}>Edit Page</button>}
-            <img id="picture" src={(profile.picture || "No Picture Located")} alt={"profile"}/>
-            <h3>{profile.email}</h3>
-            <p>{profile.description || "No Description added"}</p>
+    else{
+        return <div id='profileDocument'>
+            <table id='profileLayoutTable1'>
+                <tr>
+                    <td><img id="profilePhoto" src={(profile.picture || noProfilePhoto)} alt={"profile"} /></td>
+                    <td><h1 id='profileName'>{profile.username}</h1></td>
+                    <td id='profileTableSpacer1'></td>
+                    <td>{isUserProfile ? <button id='profileEditButton' onClick={changeEditing}>Edit</button> : <></> }</td>
+                </tr>
+            </table> 
+            <table>
+                <tr>
+                    <td><p id='profileEmail'>{profile.email}</p></td>
+                    <td id='profileTableSpacer1'></td>
+                </tr>
+            </table>
+            <p id='profileDescription'>{profile.description || "No Description added\n\n"}</p>
             </div>
     }
-    return <>No Profile Found</>
 }
