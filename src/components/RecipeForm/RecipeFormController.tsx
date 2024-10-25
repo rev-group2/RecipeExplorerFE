@@ -17,7 +17,7 @@ export interface Recipe {
   description?: string;
 }
 
-function CreateRecipeController() {
+function RecipeFormController() {
   const { uuid } = useParams<{uuid: string}>();
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [recipeUuid, setRecipeUuid] = useState<string | undefined>(undefined);
@@ -204,4 +204,4 @@ function CreateRecipeController() {
   )
 }
 
-export default CreateRecipeController
+export default RecipeFormController
