@@ -9,6 +9,7 @@ import RecipeFormController from './components/RecipeForm/RecipeFormController';
 import ProfileController from './components/Profile/ProfileController';
 import RegisterController from './components/Register/RegisterController';
 import RecipeDetailsController from './components/RecipeDetails/RecipeDetailsController';
+import SearchResultsController from './components/SearchResults/SearchResultsController';
 
 function App() : JSX.Element {
   const [user, setUser] = useState<User>({} as any)
@@ -25,6 +26,7 @@ function App() : JSX.Element {
         <Route path='/recipe' element={<RecipeFormController />}/>
         <Route path='/recipe/edit/:uuid' element={<RecipeFormController />}/>
         <Route path='/recipes/:uuid' element={<RecipeDetailsController />}/>
+        <Route path='/search-results' element={<SearchResultsController/>}/>
       </Routes>
       </UserContext.Provider>
     </div>
