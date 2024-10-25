@@ -1,22 +1,32 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { CommentType } from '../Types/commentType';
+import { ProfileType } from '../Types/profileType';
+import { RecipeType } from '../Types/recipeType';
+import { User, UserContext } from '../Context/UserContext';
 
 export default function CommentView(props:any) {
 
-    const isUserProfile:boolean = props.isUserProfile;
+    const user: User | undefined = useContext(UserContext);
+    const profile:ProfileType = props.profile;
     const comment:CommentType = props.comment;
+    const recipe:RecipeType = props.recipe;
+    const canDelete: boolean = recipe?.authorUuid === user?.uuid || comment.authorUuid === user?.uuid;
 
-    function editComment(){
-        console.log(`editing comment ${comment.uuid}`);
+    function deleteComment(){
+        console.log(`delete comment ${comment.uuid}`);
     }
+    
 
     return (
         <div>
-            <h3>{comment.authorUuid}</h3>
-            {isUserProfile && <button className="btn btn-primary mx-3" onClick={editComment}>Edit Comment</button>}
-            <h5>Rating {comment.rating}</h5>
-            <p>{comment.description}</p>
-        
+            <div className="card m-1" style={{ width: "24rem" }}>
+                <div className="card-body">
+                    <h5 className="card-title">{recipe?.recipeName}</h5>
+                    <h6 className='card-text'>Reviewed By: {profile?.username}</h6>
+                    <p className="card-text">{comment.description}</p>
+                    {canDelete && <a href="#" className="btn btn-primary" onClick={deleteComment}>Delete</a>}
+                </div>
+            </div>
         </div>
     )
 }

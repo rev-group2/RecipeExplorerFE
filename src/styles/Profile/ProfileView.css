@@ -16,6 +16,10 @@
     width: 50%;
     height: 1px;
 }
+#profileTableSpacer3{
+    width: 10%;
+    height: 1px;
+}
 #profilePhoto {
     width: 100px;
     overflow: hidden;

@@ -5,6 +5,7 @@ import RecipeView from './RecipeView';
 import CommentView from './CommentView';
 import CommentController from './CommentController';
 import { ProfileType } from '../Types/profileType';
+import RecipeController from './RecipeController';
 
 export default function ActivityView(props: any) {
 
@@ -18,7 +19,7 @@ export default function ActivityView(props: any) {
         <ul>
         {activity.length && activity.map((element: CommentType | RecipeType, index: number):JSX.Element => {
             if(element.type === "recipe"){
-                return <div key={index}><RecipeView recipe={element} isUserProfile={isUserProfile}/></div>
+                return <div key={index}><RecipeController recipe={element} isUserProfile={isUserProfile}/></div>
             }
             else{
                 return <div key={index}><CommentController comment={element} isUserProfile={isUserProfile} /></div>
