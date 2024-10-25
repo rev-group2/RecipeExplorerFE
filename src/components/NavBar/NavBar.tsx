@@ -40,7 +40,7 @@ function NavBar(props: any) {
                             <Link className="nav-link" aria-current="page" to={`profile/${user.uuid}`}>My Profile</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/create-recipe">Create Recipe</Link>
+                            <Link className="nav-link" to="/recipe">Create Recipe</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/" onClick={logout}>Logout</Link></li>
