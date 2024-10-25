@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import RecipeDetailsView from './RecipeDetailsView'
 import { useParams } from 'react-router-dom'
 import { RecipeType } from '../Types/recipeType';
 import { Meal } from '../Types/mealType';
+import { CommentType } from '../Types/commentType';
+import { UserContext } from '../Context/UserContext';
 import config from '../../config';
 const URL = `${config.path}`;
 
@@ -11,6 +13,43 @@ type SingleMeal = Meal['meals'][0];
 function RecipeDetailsController() {
   const { uuid } = useParams<{uuid: string}>();
   const [recipe, setRecipe] = useState<RecipeType | undefined>(undefined);
+  const [recipeRating, setRecipeRating] = useState<string>("No rating");
+  const user = useContext(UserContext);
+
+  async function getRecipeComments(recipeId: string | undefined) {
+    try {
+      const responseComments = await fetch(`${URL}/comments/recipe/?recipe=${recipeId}`);
+      const dataComments = await responseComments.json();
+    
+      calculateRecipeRating(dataComments);
+    } catch(err) {
+      console.error(err)
+    }
+  }
+
+  function calculateRecipeRating(comments: CommentType[]) {
+    const recipeRatings = comments.map(rating => {
+      return rating.rating;
+    })
+
+    if (recipeRatings.length) {
+      const sumRatings = recipeRatings.reduce((prevVal, currVal) => {
+        return prevVal + currVal;
+      }, 0);
+
+      let ratingAvg; 
+
+      if ((sumRatings / recipeRatings.length) % 1 !== 0) {
+        ratingAvg = (sumRatings / recipeRatings.length).toFixed(1);
+      } else {
+        ratingAvg = sumRatings / recipeRatings.length;
+      }
+      
+      setRecipeRating(`${ratingAvg}`);
+    } else {
+      setRecipeRating("No rating");
+    }
+  }
 
   function transformMealData(recipe: SingleMeal): RecipeType {
     return {
@@ -47,6 +86,14 @@ function RecipeDetailsController() {
   }
 
   useEffect(() => {
+    async function recipeRating() {
+      await getRecipeComments(uuid);
+    }
+
+    recipeRating();
+  }, [uuid]);
+
+  useEffect(() => {
     async function getRecipe() {
       if (uuid) {
         if (uuid?.length < 8) {
@@ -66,7 +113,7 @@ function RecipeDetailsController() {
   }, [uuid])
 
   return (
-    <RecipeDetailsView recipeUuid={uuid} recipeDetails={recipe}/>
+    <RecipeDetailsView recipeAuthor={user?.uuid} recipeDetails={recipe} rating={recipeRating}/>
   )
 }
 
