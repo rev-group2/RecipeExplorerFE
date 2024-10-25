@@ -1,7 +1,7 @@
 import React from 'react'
-import { Recipe } from '../Types/recipeType'
+import { RecipeType } from '../Types/recipeType'
 
-type RecipeDetailsType = {recipeUuid: string | undefined, recipeDetails: Recipe | undefined}
+type RecipeDetailsType = {recipeUuid: string | undefined, recipeDetails: RecipeType | undefined}
 
 function RecipeDetailsView({recipeUuid, recipeDetails}: RecipeDetailsType) {
   return (
