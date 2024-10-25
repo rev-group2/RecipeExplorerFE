@@ -102,7 +102,10 @@ function RecipeFormController() {
         resetData(formElement);
       }
 
+      const data = await recipeResponse.json();
+
       setTimeout(() => setSubmitted(false), 500);
+      navigate(`/recipes/${data.uuid}`)
     } catch(err) {
       setMessage("Failed to create recipe, try again");
       console.error(err);
