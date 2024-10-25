@@ -1,10 +1,10 @@
 import React from 'react'
 import "../../styles/Recipes/CreateRecipeView.css"
-import { Recipe } from './RecipeController'
+import { Recipe } from './RecipeFormController'
 
 type FormProps = {submitForm: (e: React.FormEvent<HTMLFormElement>) => void, selectImage: (e: React.ChangeEvent<HTMLInputElement>) => void, deleteRecipe: (e: React.MouseEvent<HTMLButtonElement>) => void, imageURL: string | undefined, recipeData: Recipe | undefined, editRecipe: boolean, formMessage: string, submitted: boolean}
 
-function CreateRecipeView({submitForm, selectImage, deleteRecipe, imageURL, recipeData, editRecipe, formMessage, submitted}: FormProps) {
+function RecipeFormView({submitForm, selectImage, deleteRecipe, imageURL, recipeData, editRecipe, formMessage, submitted}: FormProps) {
   return (
     <div className='create-recipe-wrapper'>
       <h2>{editRecipe ? "Edit Recipe" : "Create A New Recipe"}</h2>
@@ -56,4 +56,4 @@ function CreateRecipeView({submitForm, selectImage, deleteRecipe, imageURL, reci
   )
 }
 
-export default CreateRecipeView
+export default RecipeFormView
