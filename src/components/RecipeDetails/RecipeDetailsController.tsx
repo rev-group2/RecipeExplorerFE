@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import RecipeDetailsView from './RecipeDetailsView'
 import { useParams } from 'react-router-dom'
-import { Recipe } from '../Types/recipeType';
+import { RecipeType } from '../Types/recipeType';
 import { Meal } from '../Types/mealType';
 import config from '../../config';
 const URL = `${config.path}`;
@@ -10,10 +10,11 @@ type SingleMeal = Meal['meals'][0];
 
 function RecipeDetailsController() {
   const { uuid } = useParams<{uuid: string}>();
-  const [recipe, setRecipe] = useState<Recipe | undefined>(undefined);
+  const [recipe, setRecipe] = useState<RecipeType | undefined>(undefined);
 
-  function transformMealData(recipe: SingleMeal): Recipe {
+  function transformMealData(recipe: SingleMeal): RecipeType {
     return {
+      type: "recipe",
       uuid: recipe.idMeal,
       recipeName: recipe.strMeal,
       cuisine: recipe.strArea,
