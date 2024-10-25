@@ -2,6 +2,7 @@ import React, { act, useEffect } from 'react';
 import { RecipeType } from '../Types/recipeType';
 import { CommentType } from '../Types/commentType';
 import RecipeView from './RecipeView';
+import CommentView from './CommentView';
 import CommentController from './CommentController';
 import { ProfileType } from '../Types/profileType';
 
