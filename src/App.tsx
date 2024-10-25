@@ -23,8 +23,8 @@ function App() : JSX.Element {
         <Route path="/register" element={<RegisterController/>}/>
         <Route path="/login" element={<LoginController setUser={setUser} />} />
         <Route path='/profile/:id' element={<ProfileController setUser={setUser} />} />
-        <Route path='/recipe' element={<RecipeFormController />}/>
-        <Route path='/recipe/edit/:uuid' element={<RecipeFormController />}/>
+        <Route path='/recipes' element={<RecipeFormController />}/>
+        <Route path='/recipes/edit/:uuid' element={<RecipeFormController />}/>
         <Route path='/recipes/:uuid' element={<RecipeDetailsController />}/>
         <Route path='/search-results' element={<SearchResultsController/>}/>
       </Routes>
