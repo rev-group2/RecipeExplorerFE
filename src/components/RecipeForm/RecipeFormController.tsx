@@ -161,10 +161,10 @@ function RecipeFormController() {
   }
 
   function resetData(formElement: HTMLFormElement) {
-    formElement.reset();
     setImageFile(undefined);
     setMessage("");
     if (!isEditing) {
+      formElement.reset();
       setImageFileURL(undefined);
     }
   }
