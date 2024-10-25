@@ -6,8 +6,8 @@ type RecipeDetailsType = {recipeUuid: string | undefined, recipeDetails: Recipe 
 function RecipeDetailsView({recipeUuid, recipeDetails}: RecipeDetailsType) {
   return (
     <div>
-      <h1>Recipe</h1>
-      <p>{recipeUuid}</p>
+      <h1>{recipeDetails?.recipeName}</h1>
+      <img src={recipeDetails?.recipeThumb} alt={recipeDetails?.recipeName} />
       <p>{recipeDetails?.recipeName}</p>
     </div>
   )
