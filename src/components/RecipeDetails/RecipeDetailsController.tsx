@@ -54,7 +54,7 @@ function RecipeDetailsController() {
           const transformedRecipe = transformMealData(data.meals[0]);
           setRecipe(transformedRecipe);
         } else {
-          const response = await fetch(`${URL}/recipes/${uuid}`)
+          const response = await fetch(`${URL}/recipes/${uuid}`);
           const data = await response.json();
           setRecipe(data);
         }
@@ -62,7 +62,7 @@ function RecipeDetailsController() {
     }
 
     getRecipe();
-  }, [])
+  }, [uuid])
 
   return (
     <RecipeDetailsView recipeUuid={uuid} recipeDetails={recipe}/>
