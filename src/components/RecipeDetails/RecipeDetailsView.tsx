@@ -12,7 +12,7 @@ function RecipeDetailsView({recipeAuthor, recipeDetails, rating}: RecipeDetailsT
         <h1>{recipeDetails?.recipeName}</h1>
         <p id="recipe-info"><span id="rating">{rating}</span><span id='cuisine'>Cuisine:&nbsp;{recipeDetails?.cuisine}</span><span id='category'>Category:&nbsp;{recipeDetails?.category}</span></p>
         <img id="recipe-details-image" src={recipeDetails?.recipeThumb} alt={recipeDetails?.recipeName} />
-        { recipeDetails?.authorUuid === recipeAuthor ? <Link id="edit-recipe-button" to={`/recipes/edit/${recipeDetails?.uuid}`}>Edit</Link> : null}
+        { recipeAuthor && recipeDetails?.authorUuid === recipeAuthor ? <Link id="edit-recipe-button" to={`/recipes/edit/${recipeDetails?.uuid}`}>Edit</Link> : null}
         <div className='recipe-text-wrapper'>
           {recipeDetails?.description ? 
           <div id='recipe-description-wrapper'>
