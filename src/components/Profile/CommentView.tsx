@@ -11,22 +11,20 @@ export default function CommentView(props:any) {
     const comment:CommentType = props.comment;
     const recipe:RecipeType = props.recipe;
     const canDelete: boolean = recipe?.authorUuid === user?.uuid || comment.authorUuid === user?.uuid;
-
-    function deleteComment(){
-        console.log(`delete comment ${comment.uuid}`);
-    }
     
-
+    
     return (
         <div>
             <div className="card m-1" style={{ width: "24rem" }}>
+                <div className="card-header">
+                    <h5 style={{ textAlign: "left" }}>{recipe?.recipeName}</h5>
+                </div>
                 <div className="card-body">
-                    <h5 className="card-title">{recipe?.recipeName}</h5>
-                    <h6 className='card-text'>Reviewed By: {profile?.username}</h6>
-                    <p className="card-text">{comment.description}</p>
-                    {canDelete && <a href="#" className="btn btn-primary" onClick={deleteComment}>Delete</a>}
+                    <h6 className='card-text' style={{ textAlign: "left" }}>Reviewed By: {profile?.username}</h6>
+                    <p className="card-text" style={{ textAlign: "left" }}>{comment.description}</p>
+                    {canDelete && <a href="#" className="btn btn-primary" onClick={props.deleteComment()}>Delete Comment</a>}
                 </div>
             </div>
         </div>
-    )
+        )
 }

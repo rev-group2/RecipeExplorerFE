@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { CommentType } from '../Types/commentType';
 import { RecipeType } from '../Types/recipeType';
 import { ProfileType } from '../Types/profileType';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import CommentView from './CommentView';
 import { User, UserContext } from '../Context/UserContext';
 
@@ -11,9 +11,11 @@ const URL = `${config.path}`;
 
 export default function CommentController(props: any) {
     
+    const user: User | undefined = useContext(UserContext);
     const comment: CommentType = props.comment;
     const [recipe, setRecipe] = useState<RecipeType>(props.recipe);
     const [profile, setProfile] = useState<ProfileType>(props.profile);
+    const [display, setDisplay] = useState<boolean>(true);
 
     useEffect(() => {
         async function getRecipe(){
@@ -49,7 +51,27 @@ export default function CommentController(props: any) {
         }
     }, [comment, profile])
 
-    return (
-        <CommentView comment={comment} profile={profile} recipe={recipe} />
-    )
+    async function deleteComment(){
+        try{
+            const header: AxiosRequestConfig = { headers: { Authorization: `Bearer ${user?.token}` } };
+            const response = await axios.delete(`${URL}/comments/${comment.uuid}`, header);
+            if(response.status >= 200 && response.status < 300){
+                setDisplay(false);
+            }
+            else{
+                throw new Error(`error deleting comment ${comment.uuid}`);
+            }
+        }catch(error){
+            console.log(error);
+        }
+    }
+    if(display){
+        return (
+            <CommentView comment={comment} profile={profile} recipe={recipe} deleteComment={deleteComment} />
+        )
+    }
+    else{
+        return <></>
+    }
+    
 }
