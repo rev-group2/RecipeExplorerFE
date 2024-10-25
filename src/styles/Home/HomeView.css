@@ -46,6 +46,7 @@ h2 {
 
 #left-arrow, #right-arrow {
   border: none;
+  color: #000000;
   background: #ffffff;
   font-size: 3rem;
   cursor: pointer;
@@ -59,6 +60,10 @@ h2 {
 
 #right-arrow:hover {
   color: rgb(70, 70, 230);
+}
+
+#right-arrow {
+  text-decoration: none;
 }
 
 #comments {

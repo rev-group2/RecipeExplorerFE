@@ -57,16 +57,12 @@ export default function ProfileController(props: any): JSX.Element {
             return false;
         }
     }
-    if(profile){
-        return (
-            <>
-                <ProfileView profile={profile} token={user?.token} isUserProfile={isUserProfile} updateProfile={updateProfile} />
-                <ActivityController profile={profile} isUserProfile={isUserProfile} />
-            </>
-        )
-    }
-    else{
-        return <>No Profile Found</>
-    }
-    
+
+    return (
+        <>
+            <ProfileView profile={profile} token={user?.token} isUserProfile={isUserProfile} updateProfile={updateProfile} />
+            <ActivityController profile={profile} isUserProfile={isUserProfile}/>
+        </>
+        
+    )
 }

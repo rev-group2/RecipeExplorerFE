@@ -3,6 +3,7 @@ import "../../styles/Home/HomeView.css";
 import { RecipeType } from '../Types/recipeType';
 import CommentsView from './CommentsView'
 import { CommentType } from '../Types/commentType';
+import { Link } from 'react-router-dom';
 
 type HomeProps = { recipeIndex: number, rating: string, recipesArr: RecipeType[] | undefined, skipRecipe: () => void, comments: CommentType[] | undefined}
 
@@ -31,7 +32,7 @@ function HomeView({recipeIndex, rating, comments, recipesArr, skipRecipe}: HomeP
       <div className='buttons-wrapper'>
         <button id="left-arrow" onClick={skipRecipe}>&laquo;</button>
         <button id="comments" onClick={toggleComments}>Comments</button>
-        <button id="right-arrow">&raquo;</button>
+        <Link id="right-arrow" to={`/recipes/${recipesArr[recipeIndex].uuid}`}>&raquo;</Link>
       </div></>) : <h2>Loading</h2>
       }
       <CommentsView isVisible={visible} comments={comments} />
