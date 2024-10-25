@@ -8,6 +8,7 @@ import LoginController from './components/Login/LoginController';
 import ProfileController from './components/Profile/ProfileController';
 import RecipeController from './components/Recipe/RecipeController';
 import RegisterController from './components/Register/RegisterController';
+import SearchResultsController from './components/SearchResults/SearchResultsController';
 
 function App() : JSX.Element {
   const [user, setUser] = useState<User>({} as any)
@@ -22,6 +23,7 @@ function App() : JSX.Element {
         <Route path="/login" element={<LoginController setUser={setUser} />} />
         <Route path='/profile/:id' element={<ProfileController setUser={setUser} />} />
         <Route path='/create-recipe' element={<RecipeController recipeUuid={undefined} isEditing={false} />}/>
+        <Route path='/search-results' element={<SearchResultsController/>}/>
       </Routes>
       </UserContext.Provider>
     </div>

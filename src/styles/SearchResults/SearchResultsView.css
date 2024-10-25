@@ -1,0 +1,7 @@
+.card {
+    border: solid black 2px;
+}
+
+.card {
+    display: inline-block
+}

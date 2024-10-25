@@ -1,3 +1,3 @@
 module.exports = {
-    path: "http://localhost:8888"
+    path: "http://54.219.180.56:8888"
 }
