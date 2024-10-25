@@ -10,7 +10,7 @@ function SearchResultsView(props: any) {
 
     function showNoResultsFound() {
         return (
-            <p>Test</p>
+            <h3>No Search Results</h3>
         )
     }
 
