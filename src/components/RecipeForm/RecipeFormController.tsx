@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import RecipeFormView from './RecipeFormView';
 import { UserContext } from '../Context/UserContext';
 import uploadImage from '../../helpers/uploadImage';
@@ -17,9 +17,10 @@ export interface Recipe {
   description?: string;
 }
 
-type EditRecipeProps = {recipeUuid: string | undefined, isEditing: boolean};
-
-function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
+function CreateRecipeController() {
+  const { uuid } = useParams<{uuid: string}>();
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [recipeUuid, setRecipeUuid] = useState<string | undefined>(undefined);
   const [imageFile, setImageFile] = useState<File | undefined>(undefined);
   const [imageFileURL, setImageFileURL] = useState<string | undefined>(undefined);
   const [existingRecipe, setExistingRecipe] = useState<Recipe | undefined>(undefined);
@@ -169,16 +170,18 @@ function CreateRecipeController({recipeUuid, isEditing}: EditRecipeProps) {
   }
 
   useEffect(() => {
-    async function getRecipe() {
-      const response = await fetch(`${PURL}/recipes/${recipeUuid}`);
+    async function getRecipe(recipeId: string) {
+      const response = await fetch(`${PURL}/recipes/${recipeId}`);
       const data = await response.json();
 
       setExistingRecipe(data);
       setImageFileURL(data.recipeThumb);
     }
 
-    if (isEditing && recipeUuid) {
-      getRecipe();
+    if (uuid) {
+      setIsEditing(true);
+      setRecipeUuid(uuid);
+      getRecipe(uuid);
     }
   }, [])
 
