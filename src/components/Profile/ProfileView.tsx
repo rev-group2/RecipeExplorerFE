@@ -9,17 +9,14 @@ export default function ProfileView(props:any): JSX.Element {
     const profile: ProfileType = props.profile;
     const isUserProfile = props.isUserProfile;
     const [editing, setEditing] = useState<boolean>(false);
-    const [editedProfile, setEditedProfile] = useState<ProfileType>();
+    const [editedProfile, setEditedProfile] = useState<ProfileType>(profile);
+    
 
     function changeEditing(event: any){
         if(!editing){
             setEditedProfile(profile);
         }
         setEditing(!editing);
-    }
-
-    function changePhoto(){
-
     }
 
     async function changeProfile(event: any){
@@ -33,12 +30,24 @@ export default function ProfileView(props:any): JSX.Element {
         }
     }
 
+    function handleImageSelection(e: React.ChangeEvent<HTMLInputElement>) {
+        try {
+            const file = e.target.files?.[0];
+            if (file) {
+                const imageUrl = URL.createObjectURL(file);
+                setEditedProfile({ ...editedProfile, picture:imageUrl});
+                props.setImageFile(file);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
     if(profile && editing){
         return <div id='profileDocument'>
             <table id='profileLayoutTable1'>
                 <tr>
-                    <td><img id="profilePhotoEdit" src={(profile.picture || noProfilePhoto)} alt={"profile"} /></td>
-                    <td><button id='upload Image' onClick={changePhoto}>Upload</button></td>
+                    <td><img id="profilePhotoEdit" src={(editedProfile.picture || noProfilePhoto)} alt={"profile"} /></td>
+                    <td><input type="file" id='Upload Image' onChange={handleImageSelection}>Upload</input></td>
                     <td><h1><input type="text" defaultValue={`${profile.username}`} placeholder='username' id="usernameChange" onChange={(e: any) => editedProfile && setEditedProfile({ ...editedProfile, username: e.target.value })} /></h1></td>
                     <td id='profileTableSpacer2'></td>
                     <td><button id='profileEditButton' onClick={changeEditing}>Finish</button></td>
