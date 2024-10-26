@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import RecipeCommentView from './RecipeCommentView';
 import { UserContext } from '../Context/UserContext';
 import { CommentType } from '../Types/commentType';
@@ -6,11 +6,10 @@ import CommentsView from '../Home/CommentsView';
 import config from '../../config';
 const URL = `${config.path}`;
 
-type CommentProps = {recipeUuid: string | undefined, comments: CommentType[] | undefined}
+type CommentProps = {recipeUuid: string | undefined, comments: CommentType[] | undefined, commentSubmission: () => void}
 
-function RecipeCommentController({recipeUuid, comments}: CommentProps) {
+function RecipeCommentController({recipeUuid, comments, commentSubmission}: CommentProps) {
   const user = useContext(UserContext);
-  const [recipeComments, setRecipeComments] = useState<CommentType[] | undefined>(undefined);
   
   async function handleCommentFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -38,21 +37,10 @@ function RecipeCommentController({recipeUuid, comments}: CommentProps) {
 
       if (response.ok) {
         form.reset();
-        await getRecipeComments();
+        commentSubmission();
       }
     } catch (err) {
       console.error(err);
-    }
-  }
-
-  async function getRecipeComments() {
-    try {
-      const responseComments = await fetch(`${URL}/comments/recipe/?recipe=${recipeUuid}`);
-      const dataComments = await responseComments.json();
-    
-      setRecipeComments(dataComments);
-    } catch (err) {
-      console.error(err)
     }
   }
 
@@ -61,7 +49,7 @@ function RecipeCommentController({recipeUuid, comments}: CommentProps) {
     { user?.token ?
       <RecipeCommentView submitForm={handleCommentFormSubmit}/> : null
     }
-    <CommentsView comments={recipeComments} isVisible={true} />
+    <CommentsView comments={comments} isVisible={true} />
     </>
   )
 }
