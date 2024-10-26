@@ -5,9 +5,9 @@ import { CommentType } from '../Types/commentType';
 import { Link } from 'react-router-dom'
 import RecipeCommentController from './RecipeCommentController';
 
-type RecipeDetailsType = {recipeAuthor: string | undefined, recipeDetails: RecipeType | undefined, rating: string, comments: CommentType[] | undefined}
+type RecipeDetailsType = {recipeAuthor: string | undefined, recipeDetails: RecipeType | undefined, rating: string, comments: CommentType[] | undefined, submitComment: () => void}
 
-function RecipeDetailsView({recipeAuthor, recipeDetails, rating, comments}: RecipeDetailsType) {
+function RecipeDetailsView({recipeAuthor, recipeDetails, rating, comments, submitComment}: RecipeDetailsType) {
   return (
     <div className='recipe-details-container'>
       <div className='recipe-details-wrapper'>
@@ -35,7 +35,7 @@ function RecipeDetailsView({recipeAuthor, recipeDetails, rating, comments}: Reci
           </div>
           <div className='recipe-comments-wrapper'>
             <h3>Comments</h3>
-            <RecipeCommentController recipeUuid={recipeDetails?.uuid}  comments={comments} />
+            <RecipeCommentController recipeUuid={recipeDetails?.uuid} comments={comments} commentSubmission={submitComment} />
           </div>
         </div>
       </div>
