@@ -48,6 +48,13 @@
 
 #comment-button {
   align-self: flex-end;
+  background: #ffffff;
+  border-radius: 5px;
+}
+
+#comment-button:hover {
+  color: #198754;
+  border-color: #198754;
 }
 
 /* .recipe-comments-container {
