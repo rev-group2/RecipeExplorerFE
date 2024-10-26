@@ -30,4 +30,18 @@ describe('Login Tests', () => {
         expect(usernameInputElement).toBeInTheDocument();
         expect(passwordInputElement).toBeInTheDocument();
     });
+
+    test('There is a link to register', () => {
+        render(
+            <BrowserRouter>
+                <LoginController/>
+            </BrowserRouter>
+        );
+
+        const element = screen.getByText('Sign up', {exact: false});
+        // console.log(element)
+
+        expect(element).toBeInTheDocument();
+        expect(element).toHaveAttribute('href', '/register');
+    });
 })
