@@ -20,7 +20,7 @@ function HomeView({recipeIndex, rating, comments, recipesArr, skipRecipe}: HomeP
         <>
       <h2>{recipesArr[recipeIndex].recipeName}</h2>
       <div className='home-info_wrapper'>
-        <p><span id="rating">{rating}</span><span id='cuisine'>Cuisine:&nbsp;{recipesArr[recipeIndex].cuisine}</span><span id='category'>Category:&nbsp;{recipesArr[recipeIndex].category}</span></p>
+        <p><span id="rating">{rating !== 'No rating' ? `Rating: ${rating}` : rating}</span><span id='cuisine'>Cuisine:&nbsp;{recipesArr[recipeIndex].cuisine}</span><span id='category'>Category:&nbsp;{recipesArr[recipeIndex].category}</span></p>
       </div>
       <div className='home-image_wrapper'>
         <img id="recipe-image" src={recipesArr[recipeIndex].recipeThumb} alt={recipesArr[recipeIndex].recipeName} />
