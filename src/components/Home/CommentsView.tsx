@@ -11,7 +11,7 @@ function CommentsView({comments, isVisible}: CommentsProps) {
     {comments && comments.length ? (comments.map((comment) => (
       (
       <div className="comments-container" key={comment.uuid}>
-        <p className='recipe-comment-user'>RecipesExplorer Member</p>
+        <p className='recipe-comment-user'>Recipe Explorer Member</p>
         <p className='recipe-comment-rating'>Rating: {comment.rating} / 10</p>
         <p className="recipe-comment">{comment.description}</p>
         <span className='recipe-comment-date'>{new Date(comment.creationDate * 1000).toLocaleDateString()}</span>
