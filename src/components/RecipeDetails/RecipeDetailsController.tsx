@@ -14,6 +14,7 @@ function RecipeDetailsController() {
   const { uuid } = useParams<{uuid: string}>();
   const [recipe, setRecipe] = useState<RecipeType | undefined>(undefined);
   const [recipeRating, setRecipeRating] = useState<string>("No rating");
+  const [recipeComments, setRecipeComments] = useState<CommentType[] | undefined>(undefined);
   const user = useContext(UserContext);
 
   async function getRecipeComments(recipeId: string | undefined) {
@@ -21,9 +22,10 @@ function RecipeDetailsController() {
       const responseComments = await fetch(`${URL}/comments/recipe/?recipe=${recipeId}`);
       const dataComments = await responseComments.json();
     
+      setRecipeComments(dataComments);
       calculateRecipeRating(dataComments);
     } catch(err) {
-      console.error(err)
+      console.error(err);
     }
   }
 
@@ -113,7 +115,7 @@ function RecipeDetailsController() {
   }, [uuid])
 
   return (
-    <RecipeDetailsView recipeAuthor={user?.uuid} recipeDetails={recipe} rating={recipeRating}/>
+    <RecipeDetailsView recipeAuthor={user?.uuid} recipeDetails={recipe} rating={recipeRating} comments={recipeComments}/>
   )
 }
 
