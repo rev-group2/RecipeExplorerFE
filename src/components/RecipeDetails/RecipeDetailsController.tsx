@@ -87,6 +87,10 @@ function RecipeDetailsController() {
     };
   }
 
+  async function handleCommentSubmission() {
+    await getRecipeComments(uuid);
+  }
+
   useEffect(() => {
     async function recipeRating() {
       await getRecipeComments(uuid);
@@ -115,7 +119,7 @@ function RecipeDetailsController() {
   }, [uuid])
 
   return (
-    <RecipeDetailsView recipeAuthor={user?.uuid} recipeDetails={recipe} rating={recipeRating} comments={recipeComments}/>
+    <RecipeDetailsView recipeAuthor={user?.uuid} recipeDetails={recipe} rating={recipeRating} comments={recipeComments} submitComment={handleCommentSubmission} />
   )
 }
 
