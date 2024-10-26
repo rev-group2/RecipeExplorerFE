@@ -51,7 +51,7 @@ function LoginView(props: any) {
                     {usernameInputHelp()}
                     <div className="mb-3">
                         <label htmlFor="inputPassword" className="form-label"></label>
-                        <input type='password' name="password" className="form-control" placeholder='password' onChange={(e: any) => setUserInput({ ...userInput, password: e.target.value })} />
+                        <input type='password' name="password" className="form-control" placeholder='password' value={userInput.password} onChange={(e: any) => setUserInput({ ...userInput, password: e.target.value })} />
                     </div>
                 </>
             case 'missing password':
