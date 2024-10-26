@@ -1,11 +1,13 @@
 import React from 'react'
-import { RecipeType } from '../Types/recipeType'
 import "../../styles/RecipeDetails/RecipeDetails.css"
+import { RecipeType } from '../Types/recipeType'
+import { CommentType } from '../Types/commentType';
 import { Link } from 'react-router-dom'
+import RecipeCommentController from './RecipeCommentController';
 
-type RecipeDetailsType = {recipeAuthor: string | undefined, recipeDetails: RecipeType | undefined, rating: string}
+type RecipeDetailsType = {recipeAuthor: string | undefined, recipeDetails: RecipeType | undefined, rating: string, comments: CommentType[] | undefined}
 
-function RecipeDetailsView({recipeAuthor, recipeDetails, rating}: RecipeDetailsType) {
+function RecipeDetailsView({recipeAuthor, recipeDetails, rating, comments}: RecipeDetailsType) {
   return (
     <div className='recipe-details-container'>
       <div className='recipe-details-wrapper'>
@@ -30,6 +32,10 @@ function RecipeDetailsView({recipeAuthor, recipeDetails, rating}: RecipeDetailsT
           <div id="recipe-instructions-wrapper">
             <h3>Instructions</h3>
             <p>{recipeDetails?.instructions}</p>
+          </div>
+          <div className='recipe-comments-wrapper'>
+            <h3>Comments</h3>
+            <RecipeCommentController recipeUuid={recipeDetails?.uuid}  comments={comments} />
           </div>
         </div>
       </div>
