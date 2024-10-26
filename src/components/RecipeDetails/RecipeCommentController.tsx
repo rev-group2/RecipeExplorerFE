@@ -6,9 +6,9 @@ import CommentsView from '../Home/CommentsView';
 import config from '../../config';
 const URL = `${config.path}`;
 
-type CommentProps = {recipeUuid: string | undefined, comments: CommentType[] | undefined, commentSubmission: () => void}
+type CommentProps = {recipeUuid: string | undefined, comments: CommentType[] | undefined, commentSubmission: () => void, hasCommented: boolean}
 
-function RecipeCommentController({recipeUuid, comments, commentSubmission}: CommentProps) {
+function RecipeCommentController({recipeUuid, comments, commentSubmission, hasCommented}: CommentProps) {
   const user = useContext(UserContext);
   
   async function handleCommentFormSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -46,7 +46,7 @@ function RecipeCommentController({recipeUuid, comments, commentSubmission}: Comm
 
   return (
     <>
-    { user?.token ?
+    { user?.token && !hasCommented ?
       <RecipeCommentView submitForm={handleCommentFormSubmit}/> : null
     }
     <CommentsView comments={comments} isVisible={true} />
