@@ -18,7 +18,7 @@ export interface Recipe {
 }
 
 function RecipeFormController() {
-  const { uuid } = useParams<{uuid: string}>();
+  const { uuid } = useParams<{ uuid: string }>();
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [recipeUuid, setRecipeUuid] = useState<string | undefined>(undefined);
   const [imageFile, setImageFile] = useState<File | undefined>(undefined);
@@ -32,14 +32,14 @@ function RecipeFormController() {
   function handleImageSelection(e: React.ChangeEvent<HTMLInputElement>) {
     try {
       const file = e.target.files?.[0];
-      
+
       if (file) {
         setMessage("");
         const imageUrl = URL.createObjectURL(file);
         setImageFileURL(imageUrl);
         setImageFile(file);
       }
-    } catch(err) {
+    } catch (err) {
       console.error(err);
     }
   }
@@ -58,7 +58,7 @@ function RecipeFormController() {
           if (uploadUrl) {
             formJson.recipeThumb = uploadUrl;
           }
-        } catch(err) {
+        } catch (err) {
           console.error(err);
           setMessage("Failed to upload image, check file size (max 3mb)")
           return;
@@ -66,19 +66,19 @@ function RecipeFormController() {
       } else if (isEditing && !imageFile && existingRecipe?.recipeThumb) {
         formJson.recipeThumb = existingRecipe.recipeThumb;
       }
-      
+
       if (Object.values(formJson).includes("")) {
         setMessage("All fields are required");
         return;
       }
-      
+
       if (!imageFile && !isEditing) {
         setMessage("You must upload an image");
         return;
       }
-      
+
       isEditing && recipeUuid ? await editRecipe(formJson, form) : await createRecipe(formJson, form);
-    } catch(err) {
+    } catch (err) {
       console.error(err);
       setMessage("Submission failed, try again")
     }
@@ -96,7 +96,7 @@ function RecipeFormController() {
 
     try {
       const recipeResponse = await fetch(`${PURL}/recipes`, payload);
-      
+
       if (recipeResponse.ok) {
         setSubmitted(true);
         resetData(formElement);
@@ -106,14 +106,14 @@ function RecipeFormController() {
 
       setTimeout(() => setSubmitted(false), 500);
       navigate(`/recipes/${data.uuid}`)
-    } catch(err) {
+    } catch (err) {
       setMessage("Failed to create recipe, try again");
       console.error(err);
     }
   }
 
   async function editRecipe(recipe: Object, formElement: HTMLFormElement) {
-    const updatedRecipeData = {...recipe, uuid: existingRecipe?.uuid};
+    const updatedRecipeData = { ...recipe, uuid: existingRecipe?.uuid };
 
     const payload = {
       method: "PUT",
@@ -126,14 +126,14 @@ function RecipeFormController() {
 
     try {
       const recipeResponse = await fetch(`${PURL}/recipes`, payload);
-      
+
       if (recipeResponse.ok) {
         setSubmitted(true);
         resetData(formElement);
       }
 
       setTimeout(() => setSubmitted(false), 500);
-    } catch(err) {
+    } catch (err) {
       setMessage("Failed to edit recipe, try again");
       console.error(err);
     }
@@ -185,8 +185,16 @@ function RecipeFormController() {
       setIsEditing(true);
       setRecipeUuid(uuid);
       getRecipe(uuid);
+    } else {
+      setIsEditing(false);
+      setRecipeUuid(undefined);
+      setExistingRecipe(undefined);
+      setImageFileURL(undefined);
+      setImageFile(undefined);
+      setSubmitted(false);
+      setMessage("");
     }
-  }, [])
+  }, [uuid])
 
   useEffect(() => {
     return () => {
@@ -203,7 +211,7 @@ function RecipeFormController() {
   }, [user?.token, navigate]);
 
   return (
-    <RecipeFormView recipeData={existingRecipe} editRecipe={isEditing} deleteRecipe={handleDelete} submitForm={handleSubmit} selectImage={handleImageSelection} imageURL={imageFileURL} formMessage={message} submitted={submitted}/>
+    <RecipeFormView recipeData={existingRecipe} editRecipe={isEditing} deleteRecipe={handleDelete} submitForm={handleSubmit} selectImage={handleImageSelection} imageURL={imageFileURL} formMessage={message} submitted={submitted} />
   )
 }
 
