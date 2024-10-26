@@ -15,10 +15,14 @@ function HomeController() {
   async function getRandRecipe(recipesArr: RecipeType[] | undefined) {
     try {
       const responseRand = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
-      const dataRand = await responseRand.json();
-      
-      const randRecipe = transformMealData(dataRand);
-      combineRecipes(randRecipe, recipesArr);
+
+      if (responseRand.ok) {
+        const dataRand = await responseRand.json();
+        const randRecipe = transformMealData(dataRand);
+        combineRecipes(randRecipe, recipesArr);
+      } else {
+        console.error("Error getting random recipe from MealDB");
+      }
     } catch(err) {
       console.error(err)
     }
@@ -27,10 +31,14 @@ function HomeController() {
   async function getRecipeComments(recipeId: string | undefined) {
     try {
       const responseComments = await fetch(`${URL}/comments/recipe/?recipe=${recipeId}`);
-      const dataComments = await responseComments.json();
-    
-      setRecipeComments(dataComments);
-      calculateRecipeRating(dataComments);
+
+      if (responseComments.ok) {
+        const dataComments = await responseComments.json();
+        setRecipeComments(dataComments);
+        calculateRecipeRating(dataComments);
+      } else {
+        console.error("Error getting comments");
+      }
     } catch(err) {
       console.error(err)
     }
@@ -131,9 +139,13 @@ function HomeController() {
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch(`${URL}/recipes`);
-      const data = await response.json();
 
-      await getRandRecipe(data);
+      if (response.ok) {
+        const data = await response.json();
+        await getRandRecipe(data);
+      } else {
+        console.error("Error getting recipes from DB");
+      }
     }
 
     getRecipes();
