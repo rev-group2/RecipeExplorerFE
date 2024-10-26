@@ -75,6 +75,7 @@ function HomeController() {
       randomIndex(combinedRecipes);
       setRecipes(combinedRecipes);
     } else {
+      randomIndex(randRecipe);
       setRecipes(randRecipe);
     }
   }
