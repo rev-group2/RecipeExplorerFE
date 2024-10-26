@@ -3,7 +3,7 @@ import "../../styles/RecipeDetails/RecipeDetails.css"
 import { RecipeType } from '../Types/recipeType'
 import { CommentType } from '../Types/commentType';
 import { Link } from 'react-router-dom'
-import RecipeCommentController from './RecipeCommentController';
+import RecipeCommentController from '../RecipeCommentRatingController/RecipeCommentController';
 
 type RecipeDetailsType = {recipeAuthor: string | undefined, recipeDetails: RecipeType | undefined, rating: string, comments: CommentType[] | undefined, submitComment: () => void, existingComment: boolean}
 
