@@ -34,7 +34,7 @@ function RecipeDetailsView({recipeAuthor, recipeDetails, rating, comments, submi
             <p>{recipeDetails?.instructions}</p>
           </div>
           <div className='recipe-comments-wrapper'>
-            <h3>Comments</h3>
+            <h3>Reviews</h3>
             <RecipeCommentController recipeUuid={recipeDetails?.uuid} comments={comments} commentSubmission={submitComment} />
           </div>
         </div>
