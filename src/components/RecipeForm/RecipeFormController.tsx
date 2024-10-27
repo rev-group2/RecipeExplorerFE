@@ -175,10 +175,13 @@ function RecipeFormController() {
   useEffect(() => {
     async function getRecipe(recipeId: string) {
       const response = await fetch(`${PURL}/recipes/${recipeId}`);
-      const data = await response.json();
 
-      setExistingRecipe(data);
-      setImageFileURL(data.recipeThumb);
+      if (response.ok) {
+        const data = await response.json();
+        
+        setExistingRecipe(data);
+        setImageFileURL(data.recipeThumb);
+      }
     }
 
     if (uuid) {
