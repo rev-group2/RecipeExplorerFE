@@ -35,7 +35,7 @@ function RecipeFormView({submitForm, selectImage, deleteRecipe, imageURL, recipe
 
         <div className="image-upload-wrapper">
           <label id="recipe-image-upload-label">Image
-          <input type="file" id='recipe-image-upload' name='recipeThumb' onChange={selectImage}/>
+          <input type="file" id='recipe-image-upload' name='recipeThumb' data-testid="recipe-image-upload" onChange={selectImage}/>
           </label>
           {imageURL ? <img id='image-preview' src={imageURL} alt="preview" data-testid="recipe-thumbnail" /> : ''}
         </div>
