@@ -25,7 +25,10 @@
     "eject": "react-scripts eject",
     "test:home": "react-scripts test .src/components/home/home.test.js --detectOpenHandles",
     "test:recomcon": "react-scripts test .src/components/recipecommentrating/recipecommentrating.test.js --detectOpenHandles",
-    "test:recdetails": "react-scripts test .src/components/recipedetails/recipedetails.test.js --detectOpenHandles"
+    "test:recdetails": "react-scripts test .src/components/recipedetails/recipedetails.test.js --detectOpenHandles",
+    "test:recform": "react-scripts test .src/components/recipeform/recipeform.test.js --detectOpenHandles",
+    "test:recformdel": "react-scripts test .src/components/recipeform/recipeformdelete.test.js --detectOpenHandles",
+    "test:recformnewnav": "react-scripts test .src/components/recipeform/recipeformcreatenav.test.js --detectOpenHandles"
   },
   "jest": {
     "transform": {
