@@ -37,19 +37,19 @@ function RecipeFormView({submitForm, selectImage, deleteRecipe, imageURL, recipe
           <label id="recipe-image-upload-label">Image
           <input type="file" id='recipe-image-upload' name='recipeThumb' onChange={selectImage}/>
           </label>
-          {imageURL ? <img id='image-preview' src={imageURL} alt="preview" /> : ''}
+          {imageURL ? <img id='image-preview' src={imageURL} alt="preview" data-testid="recipe-thumbnail" /> : ''}
         </div>
 
-        <div className='recipe-form-message'>
+        <div className='recipe-form-message' data-testid="recipe-form-message">
           <p>{formMessage ? formMessage : "" }</p>
         </div>
 
         {editRecipe ? 
         <>
-          <button type='submit'>{submitted ? "Recipe Updated" : "Save Edits"}</button>
-          <button type='button' onClick={deleteRecipe}>Delete Recipe</button> 
+          <button type='submit' data-testid="submit-button">{submitted ? "Recipe Updated" : "Save Edits"}</button>
+          <button type='button' data-testid="delete-button" onClick={deleteRecipe}>Delete Recipe</button> 
         </> :
-        <button type='submit'>{submitted ? "Recipe Submitted" : "Create Recipe"}</button>
+        <button type='submit' data-testid="submit-button">{submitted ? "Recipe Submitted" : "Create Recipe"}</button>
         }
       </form>
     </div>
