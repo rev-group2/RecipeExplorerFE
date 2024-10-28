@@ -5,6 +5,7 @@ import { ProfileType } from '../Types/profileType';
 import axios, { AxiosRequestConfig } from 'axios';
 import CommentView from './CommentView';
 import { User, UserContext } from '../Context/UserContext';
+import transformSingleMealData from '../../helpers/transformMealData';
 
 const config = require("../../config");
 const URL = `${config.path}`;
@@ -29,8 +30,22 @@ export default function CommentController(props: any) {
                 console.log(error);
             }
         }
+        
+        async function getMealDBRecipe(){
+            try{
+                const resultMealDB = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${comment.recipeUuid}`);
+                if (resultMealDB.status >= 200 && resultMealDB.status < 300) {
+                    const formattedRecipe = transformSingleMealData(resultMealDB.data);
+                    setRecipe(formattedRecipe);
+                    console.log(formattedRecipe)
+                }
+            }catch(error){
+                console.log(error);
+            }
+        }
         if(!recipe){
             getRecipe()
+            getMealDBRecipe();
         }
     }, [comment, recipe]);
     useEffect(() => {
@@ -39,14 +54,14 @@ export default function CommentController(props: any) {
                 const result = await axios.get(`${URL}/users/profile/${comment.authorUuid}`);
                 if (result.status >= 200 && result.status < 300) {
                     setProfile(result.data);
-                    console.log(result.data);
+                    //console.log(result.data);
                 }
             } catch (error) {
                 console.log(error);
             }
         }
         if (!profile) {
-            console.log(profile);
+            //console.log(profile);
             getUser()
         }
     }, [comment, profile])

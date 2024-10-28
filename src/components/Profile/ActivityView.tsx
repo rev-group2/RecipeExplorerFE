@@ -12,7 +12,7 @@ export default function ActivityView(props: any) {
     const isUserProfile:boolean = props.isUserProfile;
     const activity: Array<CommentType | RecipeType> = props.activity;
     const profile: ProfileType = props.profile;
-    //console.log(activity);
+    console.log(activity);
 
 
     if (activity.length > 0){
@@ -21,10 +21,10 @@ export default function ActivityView(props: any) {
         <ul>
         { activity.map((element: CommentType | RecipeType, index: number):JSX.Element => {
             if(element.type === "recipe"){
-                return <div key={index}><RecipeController recipe={element} isUserProfile={isUserProfile}/></div>
+                return <div key={index}><RecipeController recipe={element} isUserProfile={isUserProfile} profile={profile}/></div>
             }
             else{
-                return <div key={index}><CommentController comment={element} isUserProfile={isUserProfile} /></div>
+                return <div key={index}><CommentController comment={element} isUserProfile={isUserProfile} profile={profile}/></div>
             }
         })}
         </ul></>)

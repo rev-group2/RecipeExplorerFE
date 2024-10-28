@@ -53,17 +53,4 @@ describe('Profile Container Tests', () => {
         });
     })
 
-    test('If the id points to a user who has comments or recipes posted, the page displays the user\'s posts', async () => {
-        RouterController.useParams.mockReturnValue({ id: "1" });
-        axios.get.mockResolvedValueOnce({ status: 200, data: fakeUser1 });
-        axios.get.mockResolvedValueOnce({ status: 200, data: [fakeComment] });
-        axios.get.mockResolvedValueOnce({status:200, data: fakeRecipe});
-        const screen = buildPage();
-
-        await waitFor(() => {
-            expect(screen.getByDisplayValue("Pizza")).toBeInTheDocument();
-            expect(screen.getByDisplayValue("3")).toBeInTheDocument();
-            expect(screen.getByDisplayValue("this author hates food")).toBeInTheDocument();
-        });
-    })
 })

@@ -22,8 +22,8 @@ export default function ProfileView(props:any): JSX.Element {
     async function changeProfile(event: any){
         if(await props.updateProfile(editedProfile)){
             setEditing(!editing);
-            console.log("after everything");
-            console.log(profile);
+            //console.log("after everything");
+            //console.log(profile);
         }
         else{
             console.log("error updating resource");

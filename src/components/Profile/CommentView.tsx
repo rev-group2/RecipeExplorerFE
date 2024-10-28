@@ -25,13 +25,14 @@ export default function CommentView(props:any) {
         <div>
             <div className="card m-1" style={{ width: "24rem" }}>
                 <div className="card-header">
-                    <h5 style={{ textAlign: "left" }} onClick={linkToRecipe}>{recipe?.recipeName}</h5>
+                    <h5 style={{ textAlign: "left" }}>{recipe?.recipeName}</h5>
                 </div>
                 <div className="card-body">
-                    <h6 className='card-text' style={{ textAlign: "left" }}>Reviewed By: {profile?.username}, Rating: {comment.rating}</h6>
-
+                    <h6 className='card-text' style={{ textAlign: "left" }} >Reviewed By: {profile?.username}</h6>
+                    <p style={{ textAlign: "left" }}>Rating: {comment.rating}</p>
                     <p className="card-text" style={{ textAlign: "left" }}>{comment.description}</p>
-                    {canDelete && <a href="#" className="btn btn-primary" onClick={props.deleteComment()}>Delete Comment</a>}
+                    {canDelete && <a href="#" className="btn btn-primary mx-2" onClick={props.deleteComment}>Delete Comment</a>}
+                    <a href="#" className="btn btn-primary mx-2" onClick={linkToRecipe}>View Recipe</a>
                 </div>
             </div>
         </div>
