@@ -119,7 +119,7 @@ function HomeController() {
   async function nextRecipe(recipeId: string | undefined) {
     try {
       const recipesRemoved = recipes?.filter((recipe: any) => {
-          return recipe.uuid !== recipeId;
+        return recipe.uuid !== recipeId;
       })
   
       await getRandRecipe(recipesRemoved);
