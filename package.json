@@ -23,7 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test:home": "react-scripts test .src/components/home/home.test.js --detectOpenHandles"
+    "test:home": "react-scripts test .src/components/home/home.test.js --detectOpenHandles",
+    "test:recomcon": "react-scripts test .src/components/recipecommentrating/recipecommentrating.test.js --detectOpenHandles"
   },
   "jest": {
     "transform": {
