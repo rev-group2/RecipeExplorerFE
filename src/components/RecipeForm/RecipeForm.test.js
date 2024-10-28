@@ -26,7 +26,6 @@ describe("RecipeFormController", () => {
   const mockUser = { token: "test-token" };
 
   const renderComponent = async () =>
-    act(
       render(
         <UserContext.Provider value={mockUser}>
           <Router>
@@ -34,7 +33,6 @@ describe("RecipeFormController", () => {
           </Router>
         </UserContext.Provider>
       )
-    )
 
   beforeEach(() => {
     jest.clearAllMocks();

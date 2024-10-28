@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
 import RecipeCommentController from "./RecipeCommentController";
 import { UserContext } from "../Context/UserContext";
 import config from "../../config";
@@ -68,7 +68,7 @@ describe("RecipeCommentController Component", () => {
     setup(false);
 
     const commentContent = "Amazing recipe!";
-    fireEvent.change(screen.getByPlaceholderText("Add a comment"), {
+    fireEvent.change(screen.getByPlaceholderText("leave a review", {exact: false}), {
       target: { value: commentContent }
     });
     fireEvent.change(screen.getByLabelText(/rate/i), {
