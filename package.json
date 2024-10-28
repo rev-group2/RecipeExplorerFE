@@ -24,7 +24,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "test:home": "react-scripts test .src/components/home/home.test.js --detectOpenHandles",
-    "test:recomcon": "react-scripts test .src/components/recipecommentrating/recipecommentrating.test.js --detectOpenHandles"
+    "test:recomcon": "react-scripts test .src/components/recipecommentrating/recipecommentrating.test.js --detectOpenHandles",
+    "test:recdetails": "react-scripts test .src/components/recipedetails/recipedetails.test.js --detectOpenHandles"
   },
   "jest": {
     "transform": {
@@ -51,6 +52,7 @@
     ]
   },
   "devDependencies": {
-    "babel-jest": "^29.7.0"
+    "babel-jest": "^29.7.0",
+    "jest-fetch-mock": "^3.0.3"
   }
 }
