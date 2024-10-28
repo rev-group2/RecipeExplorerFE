@@ -13,9 +13,7 @@ export default function ProfileView(props:any): JSX.Element {
     
 
     function changeEditing(event: any){
-        if(!editing){
-            setEditedProfile(profile);
-        }
+        setEditedProfile({...profile});
         setEditing(!editing);
     }
 
@@ -70,7 +68,7 @@ export default function ProfileView(props:any): JSX.Element {
                     <td className='table1Data'><img id="profilePhoto" src={(editedProfile.picture || noProfilePhoto)} alt={"profile"} /></td>
                     <td className='table1Data'><h1><input type="text" value={profile.username} placeholder='username' id="usernameChangeDisabled" className="form-control-plaintext" disabled /></h1></td>
                     <td id='profileTableSpacer2'></td>
-                    <td><button id='profileEditButton' onClick={changeEditing} className="btn btn-outline-dark">Edit</button></td>
+                    <td>{isUserProfile && <button id='profileEditButton' onClick={changeEditing} className="btn btn-outline-dark">Edit</button>}</td>
                 </tr>
             </table>
             <table>
