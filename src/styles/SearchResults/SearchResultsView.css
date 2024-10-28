@@ -6,6 +6,12 @@
     display: inline-block
 }
 
+.search-results-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .search-results-container div.card {
     cursor: pointer;
 }
