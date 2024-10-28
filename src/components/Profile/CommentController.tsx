@@ -24,7 +24,6 @@ export default function CommentController(props: any) {
                 const result = await axios.get(`${URL}/recipes/${comment.recipeUuid}`);
                 if (result.status >= 200 && result.status < 300) {
                     setRecipe(result.data);
-                    console.log(result.data);
                 }
             }catch(error){
                 console.log(error);
@@ -35,9 +34,10 @@ export default function CommentController(props: any) {
             try{
                 const resultMealDB = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${comment.recipeUuid}`);
                 if (resultMealDB.status >= 200 && resultMealDB.status < 300) {
-                    const formattedRecipe = transformSingleMealData(resultMealDB.data);
-                    setRecipe(formattedRecipe);
-                    console.log(formattedRecipe)
+                    if(resultMealDB.data.meals !== "Invalid ID"){
+                        const formattedRecipe = transformSingleMealData(resultMealDB.data)
+                        setRecipe(formattedRecipe);
+                    }
                 }
             }catch(error){
                 console.log(error);
