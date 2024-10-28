@@ -38,6 +38,9 @@ export default function CommentController(props: any) {
                         const formattedRecipe = transformSingleMealData(resultMealDB.data)
                         setRecipe(formattedRecipe);
                     }
+                    else{
+                        throw new Error("Uuid not in MealDB database")
+                    }
                 }
             }catch(error){
                 console.log(error);
