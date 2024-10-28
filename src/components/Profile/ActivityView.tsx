@@ -12,7 +12,7 @@ export default function ActivityView(props: any) {
     const isUserProfile:boolean = props.isUserProfile;
     const activity: Array<CommentType | RecipeType> = props.activity;
     const profile: ProfileType = props.profile;
-    console.log(activity);
+    //console.log(activity);
 
 
     if (activity.length > 0){
