@@ -3,6 +3,8 @@ import { render, screen, fireEvent, waitFor, act } from "@testing-library/react"
 import RecipeCommentController from "./RecipeCommentController";
 import { UserContext } from "../Context/UserContext";
 import config from "../../config";
+import RouterController, { BrowserRouter } from 'react-router-dom';
+ 
 
 const mockCommentSubmission = jest.fn();
 
@@ -20,6 +22,7 @@ const recipeUuid = "recipe-uuid";
 
 const setup = (hasCommented, user = mockUser) => {
   return render(
+    <RouterController>
     <UserContext.Provider value={user}>
       <RecipeCommentController
         recipeUuid={recipeUuid}
@@ -28,6 +31,7 @@ const setup = (hasCommented, user = mockUser) => {
         hasCommented={hasCommented}
       />
     </UserContext.Provider>
+    </RouterController>
   );
 };
 
