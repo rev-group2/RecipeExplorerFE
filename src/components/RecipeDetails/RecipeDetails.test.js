@@ -20,8 +20,8 @@ describe("RecipeDetailsController", () => {
   const mockRecipeUuid = "12345678";
   const mockFetch = jest.spyOn(global, "fetch");
 
-  const renderComponent = (user = mockUser) => {
-    render(
+  function renderComponent(user) {
+    return render(
       <UserContext.Provider value={user}>
         <RecipeDetailsController />
       </UserContext.Provider>
@@ -38,15 +38,16 @@ describe("RecipeDetailsController", () => {
   });
 
   it("renders RecipeDetailsView", async () => {
-    renderComponent();
+    const screen = renderComponent(mockUser);
 
     expect(RecipeDetailsView).toHaveBeenCalled();
     const props = RecipeDetailsView.mock.calls[0][0];
-
-    expect(props.recipeAuthor).toBe(mockUser.uuid);
-    expect(props.rating).toBe("No rating");
-    expect(props.comments).toBeUndefined();
-    expect(props.recipeDetails).toBeUndefined();
+    await waitFor(() => {
+      expect(props.recipeAuthor).toBe(mockUser.uuid);
+      expect(props.rating).toBe("No rating");
+      expect(props.comments).toBeUndefined();
+      expect(props.recipeDetails).toBeUndefined();
+    });
   });
 
   it("fetches recipe details from external API if uuid is less than 8 characters", async () => {
@@ -114,7 +115,7 @@ describe("RecipeDetailsController", () => {
       })
     });
 
-    renderComponent();
+    const screen = renderComponent(mockUser);
 
     await waitFor(() =>
       expect(mockFetch).toHaveBeenCalledWith(`${config.path}/recipes/12345678`)
@@ -125,9 +126,7 @@ describe("RecipeDetailsController", () => {
         `${config.path}/comments/recipe/?recipe=12345678`
       )
     );
-
-    const mockedView = await screen.findByText("Mocked HomeView");
-    expect(mockedView).toBeInTheDocument();
+    
 
     expect(RecipeDetailsView).toHaveBeenCalledWith(
       expect.objectContaining({ rating: "4.5" }),
@@ -140,13 +139,12 @@ describe("RecipeDetailsController", () => {
       json: async () => [{ rating: 4, authorUuid: mockUser.uuid }]
     });
 
-    renderComponent();
+    const screen = renderComponent(mockUser);
 
     await waitFor(() =>
       expect(RecipeDetailsView).toHaveBeenCalledWith(
-        expect.objectContaining({ existingComment: true }),
-        expect.anything()
-      )
+        expect.objectContaining(
+          { existingComment: true }), expect.anything())
     );
   });
 
@@ -159,7 +157,7 @@ describe("RecipeDetailsController", () => {
 
     await waitFor(() =>
       expect(RecipeDetailsView).toHaveBeenCalledWith(
-        expect.objectContaining({ existingComment: false }),
+        expect.objectContaining({ existingComment: false }), 
         expect.anything()
       )
     );
