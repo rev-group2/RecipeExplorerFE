@@ -50,7 +50,7 @@ function RegisterView(props: any) {
             case 'missing password':
                 return <>
                     <input type="password" name="password" placeholder='password' className="form-control is-invalid" id="inputPassword" value={userInput.password} onChange={(e: any) => setUserInput({ ...userInput, password: e.target.value })}/>
-                    <div id="serverPasswordFeedback" className="invalid-feedback">Please provide a password.</div>;
+                    <div id="serverPasswordFeedback" className="invalid-feedback">Please provide a password.</div>
                 </>
             default:
                 return <input type="password" name="password" placeholder='password' className="form-control" id="inputPassword" value={userInput.password} onChange={(e: any) => setUserInput({ ...userInput, password: e.target.value })}/>
