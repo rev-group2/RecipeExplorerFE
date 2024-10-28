@@ -25,14 +25,16 @@ afterAll(() => {
 describe("RecipeFormController", () => {
   const mockUser = { token: "test-token" };
 
-  const renderComponent = () =>
-    render(
-      <UserContext.Provider value={mockUser}>
-        <Router>
-          <RecipeFormController />
-        </Router>
-      </UserContext.Provider>
-    );
+  const renderComponent = async () =>
+    act(
+      render(
+        <UserContext.Provider value={mockUser}>
+          <Router>
+            <RecipeFormController />
+          </Router>
+        </UserContext.Provider>
+      )
+    )
 
   beforeEach(() => {
     jest.clearAllMocks();
