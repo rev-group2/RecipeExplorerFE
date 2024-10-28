@@ -21,7 +21,7 @@ export default function ActivityController(props: any): JSX.Element {
                 if (profile && profile.uuid) {
                     const result = await axios.get(`${URL}/users/activity/${profile.uuid}`);
                     if (result.status >= 200 && result.status < 300){
-                        console.log(result.data);
+                        //console.log(result.data);
                         setActivity(result.data);
                     }
                     else{
@@ -41,6 +41,6 @@ export default function ActivityController(props: any): JSX.Element {
 
 
     return (
-        <ActivityView activity={activity} isUserProfile={isUserProfile}/>
+        <ActivityView activity={activity} profile={profile} isUserProfile={isUserProfile}/>
     )
 }

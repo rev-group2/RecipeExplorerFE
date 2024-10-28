@@ -15,7 +15,7 @@ function LoginView(props: any) {
 
     function handleSubmit(event: any) {
         event.preventDefault();
-        console.log(userInput);
+        //console.log(userInput);
         props.login(userInput);
     }
 
