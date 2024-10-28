@@ -18,9 +18,7 @@ function NavBar(props: any) {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
-                <Link className="navbar-brand" to="/">
-                    Home
-                </Link>
+                <h1 className="navbar-brand"><Link to="/">Recipe Explorer</Link></h1>
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -34,6 +32,9 @@ function NavBar(props: any) {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <Link className="nav-link" to="/">
+                            Home
+                        </Link>
                         {
                             user?.token ? (
                         <>

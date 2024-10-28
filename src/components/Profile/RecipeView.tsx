@@ -15,7 +15,7 @@ export default function RecipeView(props: any) {
 
     return (
         <div>
-            <div className="card m-1" style={{ width: "24rem" }} onClick={() => { linkToRecipe() }}>
+            <div className="card m-2 activity-recipe-container" style={{ width: "24rem" }} onClick={() => { linkToRecipe() }}>
                 <img src={recipe?.recipeThumb} className="card-img-top" alt="..." />
                 <div className="card-body">
                     <h5 className="card-title">{recipe?.recipeName}</h5>

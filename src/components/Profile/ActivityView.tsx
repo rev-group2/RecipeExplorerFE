@@ -18,7 +18,8 @@ export default function ActivityView(props: any) {
     if (activity.length > 0){
         return (
         <><h2>Activity</h2>
-        <ul>
+        <div className='user-activity-wrapper'>
+        <ul className='user-activity-container'>
         { activity.map((element: CommentType | RecipeType, index: number):JSX.Element => {
             if(element.type === "recipe"){
                 return <div key={index}><RecipeController recipe={element} isUserProfile={isUserProfile} profile={profile}/></div>
@@ -27,7 +28,7 @@ export default function ActivityView(props: any) {
                 return <div key={index}><CommentController comment={element} isUserProfile={isUserProfile} profile={profile}/></div>
             }
         })}
-        </ul></>)
+        </ul></div></>)
     }
     else{
         return <><h2>Activity</h2><p>This user hasn't done anything yet...</p></>

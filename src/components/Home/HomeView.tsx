@@ -32,7 +32,7 @@ function HomeView({recipeIndex, rating, comments, recipesArr, skipRecipe}: HomeP
       <div className='buttons-wrapper'>
         <button id="left-arrow" onClick={skipRecipe}>&laquo;</button>
         <button id="comments" onClick={toggleComments}>Comments</button>
-        <Link id="right-arrow" to={`/recipes/${recipesArr[recipeIndex].uuid}`}>&raquo;</Link>
+        <button id="right-arrow"><Link to={`/recipes/${recipesArr[recipeIndex].uuid}`}>&raquo;</Link></button>
       </div></>) : <h2>Loading</h2>
       }
       <CommentsView isVisible={visible} comments={comments} />

@@ -45,11 +45,11 @@ function RecipeFormView({submitForm, selectImage, deleteRecipe, imageURL, recipe
         </div>
 
         {editRecipe ? 
-        <>
-          <button type='submit' data-testid="submit-button">{submitted ? "Recipe Updated" : "Save Edits"}</button>
-          <button type='button' data-testid="delete-button" onClick={deleteRecipe}>Delete Recipe</button> 
-        </> :
-        <button type='submit' data-testid="submit-button">{submitted ? "Recipe Submitted" : "Create Recipe"}</button>
+        <div className='recipe-form-buttons-container'>
+          <button className="submit-edit-btn" type='submit' data-testid="submit-button">{submitted ? "Recipe Updated" : "Save Edits"}</button>
+          <button className='delete-recipe-btn' type='button' data-testid="delete-button" onClick={deleteRecipe}>Delete Recipe</button> 
+        </div> :
+        <button className='submit-recipe-btn' type='submit' data-testid="submit-button">{submitted ? "Recipe Submitted" : "Create Recipe"}</button>
         }
       </form>
     </div>

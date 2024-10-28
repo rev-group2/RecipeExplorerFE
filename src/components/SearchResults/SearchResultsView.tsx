@@ -34,7 +34,7 @@ function SearchResultsView(props: any) {
             )
         });
 
-        return <ul>{listItems}</ul>
+        return <ul className='search-results-container'>{listItems}</ul>
     }
 
     return (

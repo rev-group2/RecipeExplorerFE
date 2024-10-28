@@ -23,7 +23,7 @@ export default function CommentView(props:any) {
     
     return (
         <div>
-            <div className="card m-1" style={{ width: "24rem" }}>
+            <div className="card m-2" style={{ width: "24rem" }}>
                 <div className="card-header">
                     <h5 style={{ textAlign: "left" }}>{recipe?.recipeName}</h5>
                 </div>

@@ -1,5 +1,5 @@
 .recipe-details-container {
-  margin: 20px auto;
+  margin: 20px auto 40px auto;
 }
 
 .recipe-details-wrapper {
@@ -7,11 +7,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 35%;
+  width: 45%;
+}
+
+#recipe-edit-button-wwrapper {
+  width: 30rem;
+  text-align: right;
 }
 
 #recipe-details-image {
-  width: 100%;
+  width: 30rem;
 }
 
 #edit-recipe-button {
@@ -20,6 +25,10 @@
   font-size: 1.2rem;
   text-decoration: none;
   font-weight: bold;
+}
+
+#edit-recipe-button:hover {
+  color: #198754;
 }
 
 .recipe-text-wrapper {
@@ -53,7 +62,8 @@
 }
 
 #comment-button:hover {
-  color: #198754;
+  color: #ffffff;
+  background-color: #198754;
   border-color: #198754;
 }
 

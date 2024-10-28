@@ -28,6 +28,7 @@ h2 {
   overflow: hidden;
   justify-content: center;
   width: 30%;
+  margin-bottom: 30px;
 }
 
 #recipe-image {
@@ -58,12 +59,15 @@ h2 {
   color: rgb(223, 77, 77);
 }
 
-#right-arrow:hover {
+#right-arrow a:hover {
   color: rgb(70, 70, 230);
 }
 
-#right-arrow {
+#right-arrow a {
   text-decoration: none;
+  color: #000000;
+  border: none;
+  background-color: #ffffff;
 }
 
 #comments {
@@ -75,7 +79,9 @@ h2 {
 }
 
 #comments:hover {
-  background: #e7dcdc;
+  color: #ffffff;
+  background-color: #198754;
+  border-color: #198754;
 }
 
 .home-desc_wrapper {

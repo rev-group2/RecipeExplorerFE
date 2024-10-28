@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  overflow-y: scroll;
+  height: 100vh;
 }
 
 .App-logo {
@@ -26,6 +28,19 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.navbar-brand {
+  margin-bottom: 4px;
+}
+
+.navbar-brand a {
+  text-decoration: none;
+  color: #333333;
 }
 
 @keyframes App-logo-spin {
