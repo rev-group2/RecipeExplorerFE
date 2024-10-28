@@ -1,12 +1,13 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import RecipeFormController from "./RecipeFormController";
 import { UserContext } from "../Context/UserContext";
 import uploadImage from "../../helpers/uploadImage";
 import config from "../../config";
 
-jest.mock("../../helpers/uploadImage", () => jest.fn());
+jest.mock("../../helpers/uploadImage", () => (jest.fn()));
+
 
 const mockNavigate = jest.fn();
 jest.mock("react-router-dom", () => ({
@@ -21,25 +22,28 @@ beforeAll(() => {
 describe("RecipeFormController navigate to new recipe", () => {
   const mockUser = { token: "test-token" };
 
-  const renderComponent = () =>
-    render(
+  function renderComponent(){
+    return render(
       <UserContext.Provider value={mockUser}>
         <Router>
           <RecipeFormController />
         </Router>
       </UserContext.Provider>
     );
-
+  }
+    
   it("navigates to the new recipe page upon successful recipe creation", async () => {
     const uploadedImageUrl = "http://s3bucket/test.png";
-    uploadImage.mockResolvedValueOnce(uploadedImageUrl);
+    uploadImage.mockResolvedValue(uploadedImageUrl);
 
     global.fetch = jest.fn().mockResolvedValueOnce({
       ok: true,
       json: async () => ({ uuid: "123456" })
     });
 
-    renderComponent();
+    global.URL.createObjectURL = jest.fn(() => 'BLOB');
+
+    const screen = renderComponent();
 
     fireEvent.change(screen.getByLabelText(/recipe name/i), {
       target: { value: "Test Recipe" }
@@ -60,6 +64,7 @@ describe("RecipeFormController navigate to new recipe", () => {
       target: { value: "Flour, Sugar, Eggs" }
     });
 
+    
     const file = new File(["dummy content"], "test.png", { type: "image/png" });
     const fileInput = screen.getByTestId("recipe-image-upload");
     fireEvent.change(fileInput, { target: { files: [file] } });
@@ -68,24 +73,22 @@ describe("RecipeFormController navigate to new recipe", () => {
       expect(fileInput.files[0]).toBe(file);
     });
 
-    const submitButton = screen.getByTestId("submit-button");
-    fireEvent.click(submitButton);
-
+    fireEvent.click(screen.getByTestId("submit-button"));
+    
     await waitFor(() => {
       expect(uploadImage).toHaveBeenCalledWith(file, mockUser.token);
     });
-
+    
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
         `${config.path}/recipes`,
-        expect.objectContaining({
+        {
           method: "POST",
-          headers: expect.objectContaining({
-            Authorization: "Bearer mocked_token",
+          headers: {
+            Authorization: "Bearer test-token",
             "Content-Type": "application/json"
-          }),
-          body: JSON.stringify(
-            expect.objectContaining({
+          },
+          body: JSON.stringify({
               recipeName: "Test Recipe",
               category: "Dessert",
               cuisine: "French",
@@ -93,10 +96,9 @@ describe("RecipeFormController navigate to new recipe", () => {
               instructions: "Mix ingredients and bake.",
               ingredients: "Flour, Sugar, Eggs",
               recipeThumb: uploadedImageUrl
-            })
+            }
           )
-        })
-      );
+        });
     });
 
     await waitFor(() => {
