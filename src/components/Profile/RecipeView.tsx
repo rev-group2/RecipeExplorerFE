@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function RecipeView(props: any) {
     const recipe: RecipeType = props.recipe; 
     const navigate = useNavigate();
+    
     function linkToRecipe(){
         
         if(recipe && recipe.uuid){

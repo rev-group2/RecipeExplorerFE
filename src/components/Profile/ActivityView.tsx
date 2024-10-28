@@ -14,10 +14,12 @@ export default function ActivityView(props: any) {
     const profile: ProfileType = props.profile;
     //console.log(activity);
 
-    return (
+
+    if (activity.length > 0){
+        return (
         <><h2>Activity</h2>
         <ul>
-        {activity.length && activity.map((element: CommentType | RecipeType, index: number):JSX.Element => {
+        { activity.map((element: CommentType | RecipeType, index: number):JSX.Element => {
             if(element.type === "recipe"){
                 return <div key={index}><RecipeController recipe={element} isUserProfile={isUserProfile}/></div>
             }
@@ -26,4 +28,8 @@ export default function ActivityView(props: any) {
             }
         })}
         </ul></>)
+    }
+    else{
+        return <><h2>Activity</h2><p>This user hasn't done anything yet...</p></>
+    }
 }

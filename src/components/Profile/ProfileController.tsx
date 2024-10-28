@@ -76,7 +76,7 @@ export default function ProfileController(props: any): JSX.Element {
         )
     }
     else{
-        return <>No Profile Found</>
+        return <h3>No Profile Found</h3>
     }
     
 }

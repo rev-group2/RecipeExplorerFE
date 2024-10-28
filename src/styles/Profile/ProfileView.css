@@ -6,7 +6,11 @@
 }
 #profileLayoutTable1{
     width: 100%;
-    align-items: baseline;
+    text-align: left;
+    vertical-align: bottom;
+}
+.disabledFieldProfile{
+    color: #000000;
 }
 #profileTableSpacer1{
     width: 100%;
@@ -22,11 +26,9 @@
 }
 #profilePhoto {
     width: 100px;
-    overflow: hidden;
-}
-#profilePhotoEdit{
-    width: 100px;
-    overflow: hidden;
+    height: 100px;
+    overflow: clip;
+    object-fit: contain;
 }
 #profileEmail {
     text-align: left;
@@ -34,6 +36,7 @@
 #profileDescription{
     text-align: left;
     width: 100%;
-    border: 2px solid #4f4f4f;
-    padding: 10px;
+}
+.table1Data{
+    vertical-align: bottom;
 }
