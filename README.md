@@ -40,7 +40,7 @@ It's a web application designed to make finding and sharing recipes easier and m
 
 [Create Recipe](#create-recipe)
 
-[Edit Recipe](#edit-recipe)
+[Edit/Delete Recipe](#edit-recipe)
 
 ---
 
@@ -98,7 +98,7 @@ It's a web application designed to make finding and sharing recipes easier and m
   <img alt="create recipe" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/create-recipe-filled-out.png" height="650px" width="700px">
 
 <a name="edit-recipe"></a>
-**Edit Recipe**: Signed in users are able to edit and delete their recipes.
+**Edit/Delete Recipe**: Signed in users are able to edit and delete their recipes.
 
 <img alt="edit recipe" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/edit-recipe.png" height="650px" width="700px">
 
