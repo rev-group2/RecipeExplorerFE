@@ -60,7 +60,7 @@ It's a web application designed to make finding and sharing recipes easier and m
 <img alt="user sign in" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/login.png" width="800" height="400">
 
 <a name="profile"></a>
-**Profile**: Users can view their profile and edit their information. The profile page displays a user's activity, such as created recipes and comments. Users can delete their comments from the profile page.
+**Profile**: Users can view their profile and edit their information. The profile page displays a user's activity, such as created recipes and comments. Users can delete their comments and go to their created recipes from the profile page.
 
 - Profile view:
   
