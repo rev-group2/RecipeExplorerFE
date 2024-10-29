@@ -82,7 +82,7 @@ It's a web application designed to make finding and sharing recipes easier and m
   
   <img alt="details page guest" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/recipe-details-guest.png" height="650px" width="650px">
 
-- Logged in user view:
+- Signed in user view:
 
   <img alt="details page user" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/recipe-details-signed_in.png" height="700px" width="650px">
 
