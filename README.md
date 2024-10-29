@@ -34,13 +34,13 @@ It's a web application designed to make finding and sharing recipes easier and m
 
 [Profile](#profile)
 
+[Search Results](#search-results)
+
 [Recipe Details](#recipe-details)
 
 [Create Recipe](#create-recipe)
 
 [Edit Recipe](#edit-recipe)
-
-[Search Results](#search-results)
 
 ---
 
@@ -70,6 +70,11 @@ It's a web application designed to make finding and sharing recipes easier and m
 
   <img alt="edit user profile" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/edit-profile.png" height="170px" width="800px">
 
+<a name="search-results"></a>
+**Search Results**: Users can search for recipes by category, cuisine, and ingredient via search in the nav bar and view the search results.
+
+<img alt="search results" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/search-results.png" height="450px" width="700px">
+
 <a name="recipe-details"></a>
 **Recipe Details**: Users are presented with the full recipe details, along with any recipe reviews, the option to leave a review if user is signed in, and the option to edit the recipe if the user is the recipe's creator.
 
@@ -97,8 +102,4 @@ It's a web application designed to make finding and sharing recipes easier and m
 
 <img alt="edit recipe" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/edit-recipe.png" height="650px" width="700px">
 
-<a name="search-results"></a>
-**Search Results**: Users can search for recipes by category, cuisine, and ingredient via search in the nav bar and view the search results.
-
-<img alt="search results" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/search-results.png" height="450px" width="700px">
 
