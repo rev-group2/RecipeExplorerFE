@@ -50,17 +50,17 @@ It's a web application designed to make finding and sharing recipes easier and m
 <img alt="home page" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/home.png" height="600px" width="800px">
 
 <a name="sign-up"></a>
-**Sign Up**: Users can sign up for an account
+**Sign Up**: Users can sign up for an account.
 
 <img alt="sign up for account" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/register.png" width="800" height="400">
 
 <a name="sign-in"></a>
-**Sign In**: Users can sign in
+**Sign In**: Users can sign in.
 
 <img alt="user sign in" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/login.png" width="800" height="400">
 
 <a name="profile"></a>
-**Profile**: Users can view their profile and edit their information. The profile page displays a user's activity, such as created recipes and comments. Userc can delete their comments from the profile page.
+**Profile**: Users can view their profile and edit their information. The profile page displays a user's activity, such as created recipes and comments. Users can delete their comments from the profile page.
 
 - Profile view:
   
@@ -71,7 +71,7 @@ It's a web application designed to make finding and sharing recipes easier and m
   <img alt="edit user profile" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/edit-profile.png" height="170px" width="800px">
 
 <a name="recipe-details"></a>
-**Recipe Details**: Users are presented with the full recipe details, along with any recipe reviews, the option to leave a review if user is logged in, and the option to edit the recipe if user is the recipe's creator.
+**Recipe Details**: Users are presented with the full recipe details, along with any recipe reviews, the option to leave a review if user is logged in, and the option to edit the recipe if the user is the recipe's creator.
 
 - Guest view:
   
@@ -80,3 +80,25 @@ It's a web application designed to make finding and sharing recipes easier and m
 - Logged in user view:
 
   <img alt="details page user" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/recipe-details-signed_in.png" height="700px" width="650px">
+
+<a name="create-recipe"></a>
+**Create Recipe**: Signed in users are able to create their own recipes.
+
+- Empty form:
+  
+  <img alt="create recipe" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/create-recipe.png" height="500px" width="700px">
+
+- Filled out form:
+  
+  <img alt="create recipe" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/create-recipe-filled-out.png" height="650px" width="700px">
+
+<a name="edit-recipe"></a>
+**Edit Recipe**: Signed in users are able to edit and delete their recipes.
+
+<img alt="edit recipe" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/edit-recipe.png" height="650px" width="700px">
+
+<a name="search-results"></a>
+**Search Results**: Users can search for recipes by category, cuisine, and ingredient via search in the nav bar and view the search results.
+
+<img alt="search results" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/search-results.png" height="450px" width="700px">
+
