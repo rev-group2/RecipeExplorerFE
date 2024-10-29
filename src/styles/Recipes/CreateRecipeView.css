@@ -1,0 +1,81 @@
+.create-recipe-wrapper {
+  margin: 20px auto 40px auto;
+}
+
+.create-recipe-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  row-gap: 20px;
+  width: 40%;
+  margin: 0 auto;
+}
+
+.create-recipe-form label {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4px;
+}
+
+.create-recipe-form input, .create-recipe-form textarea {
+  margin-top: 6px;
+}
+
+.image-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+#recipe-image-upload-label {
+  width: 100px;
+  overflow: hidden;
+}
+
+#image-preview {
+  width: 40%;
+  height: auto;
+  border: 1px solid #333333;
+  margin-top: 10px;
+}
+
+.create-recipe-form button {
+  padding: 10px 0;
+  background: #669dcd;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-color: #669dcd;
+}
+
+.create-recipe-form button:hover {
+  background: #198754;
+  border-color: #198754;
+}
+
+.recipe-form-buttons-container {
+  display: flex;
+  justify-content: center;
+  column-gap: 20px;
+  align-items: stretch;
+}
+
+button.submit-edit-btn {
+  flex: 2;
+}
+
+button.delete-recipe-btn {
+  flex: 1;
+}
+
+button.delete-recipe-btn:hover {
+  background: rgb(202, 34, 34);
+  border-color: rgb(202, 34, 34);
+}
+
+.recipe-form-message {
+  font-size: 1rem;
+  color: rgb(202, 34, 34);
+  text-align: center;
+}
