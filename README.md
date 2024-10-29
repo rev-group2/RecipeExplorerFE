@@ -45,27 +45,38 @@ It's a web application designed to make finding and sharing recipes easier and m
 ---
 
 <a name="home"></a>
-**Home**: users are presented with a random recipe, the ability to view a new random recipe (left arrow), the displayed recipe's comments (comments button), or view full details of the displayed recipe (right arrow).
+**Home**: Users are presented with a random recipe, the ability to view a new random recipe (left arrow), the displayed recipe's comments (comments button), or view full details of the displayed recipe (right arrow).
 
-<img alt="home page" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/home.png" height="500px" width="700px">
+<img alt="home page" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/home.png" height="600px" width="800px">
 
 <a name="sign-up"></a>
-**Sign Up**: users can sign up for an account
+**Sign Up**: Users can sign up for an account
 
-<img alt="sign up for account" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/register.png" width="600" height="300">
+<img alt="sign up for account" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/register.png" width="800" height="400">
 
 <a name="sign-in"></a>
-**Sign In**: users can sign in
+**Sign In**: Users can sign in
 
-<img alt="user sign in" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/login.png" width="600" height="300">
+<img alt="user sign in" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/login.png" width="800" height="400">
+
+<a name="profile"></a>
+**Profile**: Users can view their profile and edit their information. The profile page displays a user's activity, such as created recipes and comments. Userc can delete their comments from the profile page.
+
+- Profile view:
+  
+  <img alt="user profile" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/profile.png" height="600px" width="800px">
+
+- Edit profile:
+
+  <img alt="edit user profile" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/edit-profile.png" height="170px" width="800px">
 
 <a name="recipe-details"></a>
-**Recipe Details**: users are presented with the full recipe details, along with any recipe reviews, the option to leave a review if user is logged in, and the option to edit the recipe if user is the recipe's creator.
+**Recipe Details**: Users are presented with the full recipe details, along with any recipe reviews, the option to leave a review if user is logged in, and the option to edit the recipe if user is the recipe's creator.
 
 - Guest view:
   
-  <img alt="details page guest" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/recipe-details-guest.png" height="550px" width="500px">
+  <img alt="details page guest" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/recipe-details-guest.png" height="650px" width="650px">
 
 - Logged in user view:
 
-  <img alt="details page user" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/recipe-details-signed_in.png" height="600px" width="500px">
+  <img alt="details page user" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/recipe-details-signed_in.png" height="700px" width="650px">
