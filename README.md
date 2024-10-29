@@ -42,6 +42,7 @@ It's a web application designed to make finding and sharing recipes easier and m
 
 [Search Results](#search-results)
 
+---
 
 <a name="home"></a>
 **Home**: users are presented with a random recipe, the ability to view a new random recipe (left arrow), the displayed recipe's comments (comments button), or view full details of the displayed recipe (right arrow).
