@@ -28,9 +28,9 @@ It's a web application designed to make finding and sharing recipes easier and m
 ## Pages
 [Home](#home)
 
-[Register](#register)
+[Sign Up](#sign-up)
 
-[Login](#login)
+[Sign In](#sign-in)
 
 [Profile](#profile)
 
@@ -48,6 +48,16 @@ It's a web application designed to make finding and sharing recipes easier and m
 **Home**: users are presented with a random recipe, the ability to view a new random recipe (left arrow), the displayed recipe's comments (comments button), or view full details of the displayed recipe (right arrow).
 
 <img alt="home page" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/home.png" height="500px" width="700px">
+
+<a name="sign-up"></a>
+**Sign Up**: users can sign up for an account
+
+<img alt="sign up for account" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/register.png" width="600" height="300">
+
+<a name="sign-in"></a>
+**Sign In**: users can sign in
+
+<img alt="user sign in" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/login.png" width="600" height="300">
 
 <a name="recipe-details"></a>
 **Recipe Details**: users are presented with the full recipe details, along with any recipe reviews, the option to leave a review if user is logged in, and the option to edit the recipe if user is the recipe's creator.
