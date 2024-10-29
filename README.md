@@ -71,7 +71,7 @@ It's a web application designed to make finding and sharing recipes easier and m
   <img alt="edit user profile" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/edit-profile.png" height="170px" width="800px">
 
 <a name="recipe-details"></a>
-**Recipe Details**: Users are presented with the full recipe details, along with any recipe reviews, the option to leave a review if user is logged in, and the option to edit the recipe if the user is the recipe's creator.
+**Recipe Details**: Users are presented with the full recipe details, along with any recipe reviews, the option to leave a review if user is signed in, and the option to edit the recipe if the user is the recipe's creator.
 
 - Guest view:
   
