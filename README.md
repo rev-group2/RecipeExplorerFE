@@ -25,5 +25,36 @@ It's a web application designed to make finding and sharing recipes easier and m
   - EC2
   - S3
  
-## Features
-On the home page, users are presented with a random recipe, with the ability to view a new recipe (left arrow), it's comments (comments button), or view full details of the displayed recipe (right arrow).
+## Pages
+[Home](#home)
+
+[Register](#register)
+
+[Login](#login)
+
+[Profile](#profile)
+
+[Recipe Details](#recipe-details)
+
+[Create Recipe](#create-recipe)
+
+[Edit Recipe](#edit-recipe)
+
+[Search Results](#search-results)
+
+
+<a name="home"></a>
+**Home**: users are presented with a random recipe, the ability to view a new random recipe (left arrow), the displayed recipe's comments (comments button), or view full details of the displayed recipe (right arrow).
+
+<img alt="home page" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/home.png" height="500px" width="700px">
+
+<a name="recipe-details"></a>
+**Recipe Details**: users are presented with the full recipe details, along with any recipe reviews, the option to leave a review if user is logged in, and the option to edit the recipe if user is the recipe's creator.
+
+- Guest view:
+  
+  <img alt="details page guest" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/recipe-details-guest.png" height="550px" width="500px">
+
+- Logged in user view:
+
+  <img alt="details page user" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/recipe-details-signed_in.png" height="600px" width="500px">
