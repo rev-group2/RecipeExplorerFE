@@ -6,7 +6,7 @@ We noticed a common struggle: many of us feel like we're cooking the same meals 
 
 ## What is Recipe Explorer?
 
-It's a web application designed to make finding and sharing recipes easier and more engaging. Recipe Explorer offers a fresh way to discover recipes and connect with a community. Here’s how it works: users can browse as a guest or create an account. Users can leave comments on recipes, rate them, add their own, and search for recipes by category, cuisine, and ingredient. To spice up mealtime, the app suggests random recipes you might enjoy. You can either skip to another recipe or dive in for full details if one catches your interest.
+It's a web application designed to make finding and sharing recipes easier and more engaging. Recipe Explorer offers a fresh way to discover recipes and connect with a community. Here’s how it works: users can browse as a guest or create an account. Users can leave reviews on recipes, rate them, add their own, and search for recipes by category, cuisine, and ingredient. To spice up mealtime, the app suggests random recipes you might enjoy. You can either skip to another recipe or dive in for full details if one catches your interest.
 
 ## Tech Stack
 ### Front End
@@ -76,7 +76,7 @@ It's a web application designed to make finding and sharing recipes easier and m
 <img alt="search results" src="https://raw.githubusercontent.com/rev-group2/RecipeExplorerFE/refs/heads/main/README_images/search-results.png" height="450px" width="700px">
 
 <a name="recipe-details"></a>
-**Recipe Details**: Users are presented with the full recipe details, along with any recipe reviews, the option to leave a review if user is signed in, and the option to edit the recipe if the user is the recipe's creator.
+**Recipe Details**: Users are presented with the full recipe details, along with any recipe reviews, the option to leave a review and rating if user is signed in, and the option to edit the recipe if the user is the recipe's creator.
 
 - Guest view:
   
